@@ -1,0 +1,30 @@
+/* 
+  Localizable.strings
+  OpenWeather
+
+  Created by Kate Nedelko on 17.06.23.
+  
+*/
+
+// - Weekday
+"today" = "Today";
+
+"monday" = "Monday";
+"tuesday" = "Tuesday";
+"wednesday" = "Wednesday";
+"thursday" = "Thursday";
+"friday" = "Friday";
+"saturday" = "Saturday";
+"sunday" = "Sunday";
+
+"sunday_short" = "Sun";
+"monday_short" = "Mon";
+"tuesday_short" = "Tue";
+"wednesday_short" = "Wed";
+"thursday_short" = "Thu";
+"friday_short" = "Fri";
+"saturday_short" = "Sat";
+
+// - Wather
+"forecast_section_title" = "10-DAY FORECAST";
+"hourly_section_title" = "HOURLY FORECAST";
