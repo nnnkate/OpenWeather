@@ -43,7 +43,7 @@ final class DayWeatherCell: UITableViewCell {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        contentView.roundCorners(topLeft: 0, topRight: 0, bottomLeft: isLast ? 14 : 0, bottomRight:  isLast ? 14 : 0)
+        mainView.roundCorners(topLeft: 0, topRight: 0, bottomLeft: isLast ? 14 : 0, bottomRight: isLast ? 14 : 0)
     }
         
 }

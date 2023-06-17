@@ -114,8 +114,12 @@ extension WeatherDataSourse: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch WeatherSectionType(rawValue: indexPath.section) {
+        case .current:
+            return currentWeatherCell(cellForRowAt: indexPath)
         case .forecast:
             return dayWeatherCell(cellForRowAt: indexPath)
+        case .hourly:
+            return hourlyWeatherCell(cellForRowAt: indexPath)
         default:
             return UITableViewCell()
         }
@@ -166,6 +170,23 @@ private extension WeatherDataSourse {
 // MARK: - Cell
 private extension WeatherDataSourse {
     
+     func currentWeatherCell(cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: CurrentWeatherCell.reuseID, for: indexPath) as? CurrentWeatherCell {
+            cell.set(data: DayWeatherData(date: "", minTemperature: 0, maxTemperature: 0, weatherType: .clouds))
+            return cell
+        }
+        
+        return UITableViewCell()
+    }
+    
+    func hourlyWeatherCell(cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: HourlyWeatherCell.reuseID, for: indexPath) as? HourlyWeatherCell {
+            return cell
+        }
+        
+        return UITableViewCell()
+    }
+    
     func dayWeatherCell(cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: DayWeatherCell.reuseID, for: indexPath) as? DayWeatherCell {
             let index = indexPath.row
@@ -176,7 +197,7 @@ private extension WeatherDataSourse {
         
         return UITableViewCell()
     }
-    
+        
 }
 
 // MARK: - Configure
@@ -195,9 +216,12 @@ private extension WeatherDataSourse {
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         tableView.sectionHeaderTopPadding = 9
+        tableView.allowsSelection = false // TODO: 
     }
     
     func registerCells() {
+        tableView.register(CurrentWeatherCell.self, forCellReuseIdentifier: CurrentWeatherCell.reuseID)
+        tableView.register(HourlyWeatherCell.self, forCellReuseIdentifier: HourlyWeatherCell.reuseID)
         tableView.register(DayWeatherCell.self, forCellReuseIdentifier: DayWeatherCell.reuseID)
         tableView.register(WeatherSectionHeaderView.self, forHeaderFooterViewReuseIdentifier: WeatherSectionHeaderView.reuseID)
     }

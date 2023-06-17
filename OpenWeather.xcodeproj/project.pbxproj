@@ -38,6 +38,7 @@
 		855023CB2A3D96AE00D563AF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 855023CA2A3D96AE00D563AF /* Localizable.strings */; };
 		855023CD2A3D974000D563AF /* String+Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855023CC2A3D974000D563AF /* String+Localizable.swift */; };
 		855023D02A3D99BE00D563AF /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855023CF2A3D99BE00D563AF /* Color.swift */; };
+		855023D32A3D9E2100D563AF /* HourlyWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855023D22A3D9E2100D563AF /* HourlyWeatherCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		855023CA2A3D96AE00D563AF /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		855023CC2A3D974000D563AF /* String+Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localizable.swift"; sourceTree = "<group>"; };
 		855023CF2A3D99BE00D563AF /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		855023D22A3D9E2100D563AF /* HourlyWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyWeatherCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +197,7 @@
 		8550236D2A3D7A3E00D563AF /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				855023D12A3D9E1100D563AF /* HourlyWeather */,
 				8550239C2A3D7D9500D563AF /* SectionHeader */,
 				855023832A3D7C4C00D563AF /* DayWeather */,
 				855023802A3D7C3A00D563AF /* CurrentWeather */,
@@ -413,6 +416,14 @@
 			path = Color;
 			sourceTree = "<group>";
 		};
+		855023D12A3D9E1100D563AF /* HourlyWeather */ = {
+			isa = PBXGroup;
+			children = (
+				855023D22A3D9E2100D563AF /* HourlyWeatherCell.swift */,
+			);
+			path = HourlyWeather;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -493,6 +504,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8550238F2A3D7CE300D563AF /* NetworkManager.swift in Sources */,
+				855023D32A3D9E2100D563AF /* HourlyWeatherCell.swift in Sources */,
 				8550237E2A3D7BE000D563AF /* CurrentWeatherType.swift in Sources */,
 				855023742A3D7AB200D563AF /* WeatherDataSourse.swift in Sources */,
 				855023562A3D77D600D563AF /* WeatherViewController.swift in Sources */,
