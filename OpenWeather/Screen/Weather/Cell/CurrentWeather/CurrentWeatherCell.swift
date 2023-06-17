@@ -101,10 +101,10 @@ private extension CurrentWeatherCell {
         
         stackView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(70)
-            $0.bottom.equalTo(-70)
-            $0.leading.greaterThanOrEqualTo(14)
-            $0.trailing.lessThanOrEqualTo(-14)
+            $0.top.equalTo(PhoneSize.type == .small ? 30 : 70)
+            $0.bottom.equalTo(PhoneSize.type == .small ? -30 : -70)
+            $0.leading.greaterThanOrEqualTo(14).priority(999)
+            $0.trailing.lessThanOrEqualTo(-14).priority(999)
         }
     }
     

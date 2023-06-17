@@ -28,3 +28,8 @@
 // - Wather
 "forecast_section_title" = "10-DAY FORECAST";
 "hourly_section_title" = "HOURLY FORECAST";
+
+"humidity_title" = "HUMIDITY";
+"feels_like_title" = "FEELS LIKE";
+"wind_title" = "WIND";
+"visibility_title" = "VISIBILITY";

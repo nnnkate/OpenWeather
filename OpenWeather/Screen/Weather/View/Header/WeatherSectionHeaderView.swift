@@ -1,5 +1,5 @@
 //
-//  WeatherSectionView.swift
+//  WeatherSectionHeaderView.swift
 //  OpenWeather
 //
 //  Created by Kate Nedelko on 17.06.23.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class WeatherSectionView: UIView {
+final class WeatherSectionHeaderView: UIView {
     
     // - UI
     private lazy var imageView = {
@@ -37,17 +37,21 @@ final class WeatherSectionView: UIView {
 }
 
 // MARK: - Set
-extension WeatherSectionView {
+extension WeatherSectionHeaderView {
     
-    func set(title: String, image: UIImage?) {
+    func set(title: String, image: UIImage?, imageHeight: CGFloat = 16, imageWidth: CGFloat = 16) {
         titleLabel.text = title
         imageView.image = image
+        imageView.snp.updateConstraints {
+            $0.width.equalTo(imageWidth)
+            $0.height.equalTo(imageHeight)
+        }
     }
     
 }
 
 // MARK: - Configure
-private extension WeatherSectionView {
+private extension WeatherSectionHeaderView {
     
     func configure() {
         configureUI()
@@ -60,17 +64,17 @@ private extension WeatherSectionView {
     }
     
     func addSubviews() {
-        addBlur()
         addSubview(imageView)
         addSubview(titleLabel)
     }
     
     func makeConstraints() {
         imageView.snp.makeConstraints {
-            $0.top.greaterThanOrEqualTo(10)
+            $0.top.greaterThanOrEqualTo(10).priority(999)
             $0.leading.equalTo(14)
-            $0.height.width.equalTo(16)
-            $0.bottom.lessThanOrEqualTo(-10)
+            $0.width.equalTo(16)
+            $0.height.equalTo(16)
+            $0.bottom.lessThanOrEqualTo(-10).priority(999)
             $0.centerY.equalToSuperview()
         }
         
@@ -84,7 +88,3 @@ private extension WeatherSectionView {
     }
     
 }
-
-
-
-

@@ -1,5 +1,5 @@
 //
-//  WeatherSectionHeaderView.swift
+//  WeatherSectionHeader.swift
 //  OpenWeather
 //
 //  Created by Kate Nedelko on 17.06.23.
@@ -7,13 +7,13 @@
 
 import UIKit
 
-final class WeatherSectionHeaderView: UITableViewHeaderFooterView {
+final class WeatherSectionHeader: UITableViewHeaderFooterView {
     
     // - Register
-    static let reuseID = "WeatherSectionHeaderView"
+    static let reuseID = "WeatherSectionHeader"
         
     // - UI
-    private lazy var mainView = WeatherSectionView()
+    private lazy var mainView = WeatherSectionHeaderView()
     
     // - LifeCycle
     override init(reuseIdentifier: String?) {
@@ -28,13 +28,13 @@ final class WeatherSectionHeaderView: UITableViewHeaderFooterView {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        mainView.roundCorners(topLeft: 14, topRight: 14, bottomLeft: 0, bottomRight: 0)
+        contentView.roundCorners(topLeft: 14, topRight: 14, bottomLeft: 0, bottomRight: 0)
     }
     
 }
 
 // MARK: - Set
-extension WeatherSectionHeaderView {
+extension WeatherSectionHeader {
     
     func set(title: String, image: UIImage?) {
         mainView.set(title: title, image: image)
@@ -43,7 +43,7 @@ extension WeatherSectionHeaderView {
 }
 
 // MARK: - Configure
-private extension WeatherSectionHeaderView {
+private extension WeatherSectionHeader {
     
     func configure() {
         configureUI()
@@ -56,6 +56,7 @@ private extension WeatherSectionHeaderView {
     }
     
     func addSubviews() {
+        contentView.addBlur()
         contentView.addSubview(mainView)
     }
     

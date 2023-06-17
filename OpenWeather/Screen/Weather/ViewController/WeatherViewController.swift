@@ -12,7 +12,7 @@ final class WeatherViewController: UIViewController {
     
     // - UI
     private lazy var backgroundImageView = UIImageView(image: CurrentWeatherType.sun.image)
-    private lazy var tableView = UITableView()
+    private lazy var tableView = UITableView(frame: .zero, style: .grouped)
     private lazy var bottomView = WeatherBottomView()
     
     // - DataSource

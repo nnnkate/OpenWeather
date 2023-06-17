@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum WeatherSectionType: Int {
+enum WeatherSectionType: Int, CaseIterable {
     case current
     case hourly
     case forecast
@@ -79,7 +79,7 @@ extension WeatherDataSourse: WeatherDataSourseProtocol {
 extension WeatherDataSourse: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        4
+        WeatherSectionType.allCases.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -120,7 +120,9 @@ extension WeatherDataSourse: UITableViewDataSource {
             return dayWeatherCell(cellForRowAt: indexPath)
         case .hourly:
             return hourlyWeatherCell(cellForRowAt: indexPath)
-        default:
+        case .additional:
+            return additionalInformationCell(cellForRowAt: indexPath)
+        case .none:
             return UITableViewCell()
         }
     }
@@ -143,7 +145,7 @@ extension WeatherDataSourse: UITableViewDelegate {
         case .forecast, .hourly:
             return 45
         default:
-            return 1
+            return 0
         }
     }
     
@@ -157,7 +159,7 @@ extension WeatherDataSourse: UITableViewDelegate {
 private extension WeatherDataSourse {
     
     func weatherSectionHeaderView(viewForHeaderInSection section: Int) -> UIView? {
-        if let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: WeatherSectionHeaderView.reuseID) as? WeatherSectionHeaderView {
+        if let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: WeatherSectionHeader.reuseID) as? WeatherSectionHeader {
             let type = WeatherSectionType(rawValue: section)
             view.set(title: type?.title ?? "", image: type?.image)
             return view
@@ -197,6 +199,14 @@ private extension WeatherDataSourse {
         
         return UITableViewCell()
     }
+    
+    func additionalInformationCell(cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: AdditionalInformationCell.reuseID, for: indexPath) as? AdditionalInformationCell {
+            return cell
+        }
+        
+        return UITableViewCell()
+    }
         
 }
 
@@ -212,7 +222,7 @@ private extension WeatherDataSourse {
     func setupDataSource() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.contentInset = .zero
+        tableView.contentInset = .init(top: 0, left: 0, bottom: 80, right: 0)
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         tableView.sectionHeaderTopPadding = 9
@@ -223,7 +233,8 @@ private extension WeatherDataSourse {
         tableView.register(CurrentWeatherCell.self, forCellReuseIdentifier: CurrentWeatherCell.reuseID)
         tableView.register(HourlyWeatherCell.self, forCellReuseIdentifier: HourlyWeatherCell.reuseID)
         tableView.register(DayWeatherCell.self, forCellReuseIdentifier: DayWeatherCell.reuseID)
-        tableView.register(WeatherSectionHeaderView.self, forHeaderFooterViewReuseIdentifier: WeatherSectionHeaderView.reuseID)
+        tableView.register(AdditionalInformationCell.self, forCellReuseIdentifier: AdditionalInformationCell.reuseID)
+        tableView.register(WeatherSectionHeader.self, forHeaderFooterViewReuseIdentifier: WeatherSectionHeader.reuseID)
     }
     
 }

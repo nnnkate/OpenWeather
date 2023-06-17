@@ -15,6 +15,7 @@ extension UIView {
         visualEffect.frame = self.bounds
         visualEffect.alpha = 0.85
         visualEffect.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        visualEffect.clipsToBounds = true
         self.addSubview(visualEffect)
         visualEffect.snp.makeConstraints {
             $0.top.leading.trailing.bottom.equalToSuperview()
