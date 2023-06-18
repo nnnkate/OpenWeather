@@ -12,11 +12,12 @@ final class WeatherViewController: UIViewController {
     
     // - UI
     private lazy var backgroundImageView = UIImageView(image: CurrentWeatherType.sun.image)
+    private lazy var currentWeatherView = CurrentWeatherView()
     private lazy var tableView = UITableView(frame: .zero, style: .grouped)
     private lazy var bottomView = WeatherBottomView()
     
     // - DataSource
-    private lazy var dataSource: WeatherDataSourseProtocol = WeatherDataSourse(tableView: tableView)
+    private lazy var dataSource: WeatherDataSourseProtocol = WeatherDataSourse(tableView: tableView, delegate: self)
     
     // - Presenter
     private lazy var presenter: WeatherPresenterProtocol = WeatherPresenter(delegate: self)
@@ -38,7 +39,8 @@ private extension WeatherViewController {
     }
     
     func updateData() {
-        backgroundImageView.image = CurrentWeatherType.night.image // TODO:
+        currentWeatherView.set(data: DayWeatherData(date: "", minTemperature: 0, maxTemperature: 0, weatherType: .clouds)) // TODO:
+        backgroundImageView.image = CurrentWeatherType.night.image // TODO: 
         dataSource.reloadData() // TODO: add several methods (for sections)
     }
     
@@ -57,6 +59,15 @@ extension WeatherViewController: WeatherPresenterDelegate {
     
 }
 
+// MARK: - WeatherDataSourseDelegate
+extension WeatherViewController: WeatherDataSourseDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        currentWeatherView.set(inset: scrollView.contentOffset.y)
+    }
+    
+}
+
 // MARK: - Configure
 private extension WeatherViewController {
     
@@ -69,6 +80,7 @@ private extension WeatherViewController {
     
     func addSubviews() {
         view.addSubview(backgroundImageView)
+        view.addSubview(currentWeatherView)
         view.addSubview(tableView)
         view.addSubview(bottomView)
     }
@@ -78,8 +90,15 @@ private extension WeatherViewController {
             $0.top.leading.trailing.bottom.equalToSuperview()
         }
         
+        currentWeatherView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.leading.equalTo(16)
+            $0.trailing.equalTo(-16)
+            $0.bottom.equalTo(tableView.snp.top)
+        }
+        
         tableView.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview()
+            $0.bottom.equalToSuperview()
             $0.leading.equalTo(16)
             $0.trailing.equalTo(-16)
         }

@@ -8,7 +8,6 @@
 import UIKit
 
 enum WeatherSectionType: Int, CaseIterable {
-    case current
     case hourly
     case forecast
     case additional
@@ -45,16 +44,26 @@ protocol WeatherDataSourseProtocol {
     func reloadData()
 }
 
+protocol WeatherDataSourseDelegate: AnyObject {
+    func scrollViewDidScroll(_ scrollView: UIScrollView)
+}
+
+
 final class WeatherDataSourse: NSObject {
     
+    // - UI
     private unowned var tableView: UITableView
+    
+    // - Delegate
+    private weak var delegate: WeatherDataSourseDelegate?
     
     // - Data
     private var forecastData: [DayWeatherData] = []
     
     // - Init
-    init(tableView: UITableView) {
+    init(tableView: UITableView, delegate: WeatherDataSourseDelegate) {
         self.tableView = tableView
+        self.delegate = delegate
         super.init()
         configure()
     }
@@ -114,8 +123,6 @@ extension WeatherDataSourse: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch WeatherSectionType(rawValue: indexPath.section) {
-        case .current:
-            return currentWeatherCell(cellForRowAt: indexPath)
         case .forecast:
             return dayWeatherCell(cellForRowAt: indexPath)
         case .hourly:
@@ -130,6 +137,10 @@ extension WeatherDataSourse: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension WeatherDataSourse: UITableViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        delegate?.scrollViewDidScroll(scrollView)
+    }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch WeatherSectionType(rawValue: section) {
@@ -172,17 +183,39 @@ private extension WeatherDataSourse {
 // MARK: - Cell
 private extension WeatherDataSourse {
     
-     func currentWeatherCell(cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: CurrentWeatherCell.reuseID, for: indexPath) as? CurrentWeatherCell {
-            cell.set(data: DayWeatherData(date: "", minTemperature: 0, maxTemperature: 0, weatherType: .clouds))
-            return cell
-        }
-        
-        return UITableViewCell()
-    }
-    
     func hourlyWeatherCell(cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: HourlyWeatherCell.reuseID, for: indexPath) as? HourlyWeatherCell {
+            let mockData = [HourWeatherData(timestamp: "11",
+                                            weatherType: .clouds,
+                                            temperature: "26"),
+                            HourWeatherData(timestamp: "12",
+                                            weatherType: .clouds,
+                                            temperature: "22"),
+                            HourWeatherData(timestamp: "13",
+                                            weatherType: .clouds,
+                                            temperature: "22"),
+                            HourWeatherData(timestamp: "14",
+                                            weatherType: .clouds,
+                                            temperature: "22"),
+                            HourWeatherData(timestamp: "15",
+                                            weatherType: .clouds,
+                                            temperature: "22"),
+                             HourWeatherData(timestamp: "16",
+                                            weatherType: .clouds,
+                                            temperature: "24"),
+                             HourWeatherData(timestamp: "17",
+                                            weatherType: .clouds,
+                                            temperature: "24"),
+                             HourWeatherData(timestamp: "18",
+                                            weatherType: .clouds,
+                                            temperature: "25"),
+                             HourWeatherData(timestamp: "19",
+                                            weatherType: .clouds,
+                                            temperature: "26"),
+                            HourWeatherData(timestamp: "20",
+                                            weatherType: .clouds,
+                                            temperature: "26")]
+            cell.set(data: mockData)
             return cell
         }
         
@@ -230,7 +263,6 @@ private extension WeatherDataSourse {
     }
     
     func registerCells() {
-        tableView.register(CurrentWeatherCell.self, forCellReuseIdentifier: CurrentWeatherCell.reuseID)
         tableView.register(HourlyWeatherCell.self, forCellReuseIdentifier: HourlyWeatherCell.reuseID)
         tableView.register(DayWeatherCell.self, forCellReuseIdentifier: DayWeatherCell.reuseID)
         tableView.register(AdditionalInformationCell.self, forCellReuseIdentifier: AdditionalInformationCell.reuseID)

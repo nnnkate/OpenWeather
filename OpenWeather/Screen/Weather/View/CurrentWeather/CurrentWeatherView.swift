@@ -1,5 +1,5 @@
 //
-//  CurrentWeatherCell.swift
+//  CurrentWeatherView.swift
 //  OpenWeather
 //
 //  Created by Kate Nedelko on 17.06.23.
@@ -7,10 +7,7 @@
 
 import UIKit
 
-final class CurrentWeatherCell: UITableViewCell {
-    
-    // - Register
-    static let reuseID = "CurrentWeatherCell"
+final class CurrentWeatherView: UIView {
     
     // - UI
     private lazy var mainView = UIView()
@@ -21,40 +18,79 @@ final class CurrentWeatherCell: UITableViewCell {
         view.contentMode = .center
         return view
     }()
-    private lazy var cityLabel = Label(font: UIFont(name: "Inter-Medium", size: 30), textAlignment: .center)
-    private lazy var temperatureLabel = Label(font: UIFont(name: "Inter-Medium", size: 60), textAlignment: .center)
+    private lazy var cityLabel = Label(font: .systemFont(ofSize: 30), textAlignment: .center)
+    private lazy var temperatureLabel = Label(font: .systemFont(ofSize: 60, weight: .light), textAlignment: .center)
     private lazy var conditionLabel = Label(font: UIFont(name: "Inter-Medium", size: 20), textAlignment: .center)
     private lazy var minMaxTemperatureLabel = Label(font: UIFont(name: "Inter-Medium", size: 17), textAlignment: .center)
    
     
     // - Data
     private(set) var data: DayWeatherData?
+    private let spacing: CGFloat = PhoneSize.type == .small ? 30 : 60
+    private let maxInset: CGFloat = 80
+    private let minInset: CGFloat = 40
+    private lazy var height: CGFloat = PhoneSize.type == .small ? 220 : 280
 
     // - LifeCycle
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    init() {
+        super.init(frame: .zero)
         configure()
     }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configure()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
         configure()
     }
     
 }
 
 // MARK: - Set
-extension CurrentWeatherCell {
+extension CurrentWeatherView {
     
     func set(data: DayWeatherData) {
         self.data = data
         updateData()
     }
     
+    func set(inset: CGFloat) {
+        let inset = inset > minInset ? minInset : abs(inset)
+        mainView.snp.updateConstraints {
+            $0.height.equalTo(height - ((inset < maxInset) ? (inset) : (maxInset)))
+        }
+        stackView.snp.updateConstraints {
+            $0.top.equalTo(spacing - (inset > maxInset ? maxInset : inset))
+        }
+        changeVisibility(label: minMaxTemperatureLabel, maxY: minMaxTemperatureLabel.frame.maxY, frameMaxY: mainView.frame.maxY)
+        changeVisibility(label: conditionLabel, maxY: conditionLabel.frame.maxY, frameMaxY: mainView.frame.maxY)
+    }
+    
+}
+
+// MARK: - Helper
+private extension CurrentWeatherView {
+    
+    func changeVisibility(label: UILabel, maxY: CGFloat, frameMaxY: CGFloat) {
+        let inset: CGFloat = frameMaxY - maxY
+        if inset < maxInset {
+            if inset < spacing {
+                minMaxTemperatureLabel.alpha = 0
+            } else {
+                minMaxTemperatureLabel.alpha = abs(spacing - inset) / (spacing - (inset > minInset ? minInset : inset))
+            }
+        } else {
+            minMaxTemperatureLabel.alpha = 1
+        }
+    }
+    
 }
 
 // MARK: - Update
-private extension CurrentWeatherCell {
+private extension CurrentWeatherView {
     
     func updateData() {
         guard let data else {
@@ -73,7 +109,7 @@ private extension CurrentWeatherCell {
 }
 
 // MARK: - Configure
-private extension CurrentWeatherCell {
+private extension CurrentWeatherView {
     
     func configure() {
         configureUI()
@@ -86,7 +122,7 @@ private extension CurrentWeatherCell {
     }
     
     func addSubviews() {
-        contentView.addSubview(mainView)
+        addSubview(mainView)
         mainView.addSubview(stackView)
         stackView.addArrangedSubview(cityLabel)
         stackView.addArrangedSubview(temperatureLabel)
@@ -97,12 +133,13 @@ private extension CurrentWeatherCell {
     func makeConstraints() {
         mainView.snp.makeConstraints {
             $0.top.bottom.leading.trailing.equalToSuperview()
+            $0.height.equalTo(height)
         }
         
         stackView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(PhoneSize.type == .small ? 30 : 70)
-            $0.bottom.equalTo(PhoneSize.type == .small ? -30 : -70)
+            $0.top.equalTo(spacing)
+//            $0.bottom.equalTo(-spacing).priority(999)
             $0.leading.greaterThanOrEqualTo(14).priority(999)
             $0.trailing.lessThanOrEqualTo(-14).priority(999)
         }

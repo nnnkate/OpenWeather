@@ -14,6 +14,11 @@ final class DayWeatherCell: UITableViewCell {
     
     // - UI
     private lazy var mainView = UIView()
+    private lazy var separator = {
+        let view = UIView()
+        view.backgroundColor = .gray
+        return view
+    }()
     private lazy var stackView = {
         let view = UIStackView()
         view.axis = .horizontal
@@ -21,7 +26,11 @@ final class DayWeatherCell: UITableViewCell {
         return view
     }()
     private lazy var dayLabel = Label(font: UIFont(name: "Inter-Medium", size: 18))
-    private lazy var conditionImageView = UIImageView()
+    private lazy var conditionImageView = {
+        let view = UIImageView()
+        view.tintColor = .white
+        return view
+    }()
     private lazy var conditionLabel = Label(color: .blue, font: UIFont(name: "Inter-Medium", size: 11))
     private lazy var minTemperatureLabel = Label(color: .gray, font: UIFont(name: "Inter-Medium", size: 16))
     private lazy var maxTemperatureLabel = Label(font: UIFont(name: "Inter-Medium", size: 16))
@@ -73,10 +82,10 @@ private extension DayWeatherCell {
         dayLabel.text = data.date.standartDate?.getWeekday()
         let weatherType = data.weatherType
         conditionImageView.image = weatherType?.image
-        conditionLabel.isHidden = weatherType != .snow
+        conditionLabel.isHidden = weatherType != .snow && weatherType != .rain
         conditionLabel.text = weatherType == .snow ? "70 %" : "" // TODO:
-        minTemperatureLabel.text = String(data.minTemperature)
-        maxTemperatureLabel.text = String(data.maxTemperature)
+        minTemperatureLabel.text = "\(String(data.minTemperature))°"
+        maxTemperatureLabel.text =  "\(String(data.maxTemperature))°"
     }
     
 }
@@ -98,6 +107,7 @@ private extension DayWeatherCell {
         contentView.addSubview(mainView)
         mainView.addBlur()
         mainView.addSubview(stackView)
+        mainView.addSubview(separator)
         stackView.addArrangedSubview(dayLabel)
         stackView.addArrangedSubview(conditionImageView)
         stackView.addArrangedSubview(conditionLabel)
@@ -113,6 +123,13 @@ private extension DayWeatherCell {
         stackView.snp.makeConstraints {
             $0.top.leading.equalTo(14)
             $0.trailing.bottom.equalTo(-14)
+        }
+        
+        separator.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.equalTo(14)
+            $0.trailing.equalTo(-14)
+            $0.height.equalTo(0.5)
         }
     }
     

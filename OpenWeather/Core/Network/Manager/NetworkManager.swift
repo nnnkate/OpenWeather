@@ -53,7 +53,7 @@ extension NetworkManager {
     
 }
 
-// MARK: - API
+// MARK: - NetworkManagerProtocol
 extension NetworkManager: NetworkManagerProtocol {
     
     func loadCurrentWeather(latitude: CLLocationDegrees,
@@ -66,7 +66,7 @@ extension NetworkManager: NetworkManagerProtocol {
                 return
             }
             
-            guard let data = data else { return }
+            guard let data else { return }
             let decoder = JSONDecoder()
             do {
                 let weatherResponse = try decoder.decode(CurrentWeatherResponse.self, from: data)
@@ -88,7 +88,7 @@ extension NetworkManager: NetworkManagerProtocol {
                 return
             }
             
-            guard let data = data else { return }
+            guard let data else { return }
             let decoder = JSONDecoder()
             do {
                 let severalDaysWeatherResponse = try decoder.decode(SeveralDaysWeatherResponse.self, from: data)
@@ -102,6 +102,3 @@ extension NetworkManager: NetworkManagerProtocol {
     }
     
 }
-
-
-

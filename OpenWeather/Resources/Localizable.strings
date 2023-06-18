@@ -25,6 +25,8 @@
 "friday_short" = "Fri";
 "saturday_short" = "Sat";
 
+"now" = "Now";
+
 // - Wather
 "forecast_section_title" = "10-DAY FORECAST";
 "hourly_section_title" = "HOURLY FORECAST";
@@ -33,3 +35,4 @@
 "feels_like_title" = "FEELS LIKE";
 "wind_title" = "WIND";
 "visibility_title" = "VISIBILITY";
+

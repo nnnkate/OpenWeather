@@ -14,6 +14,13 @@ final class HourlyWeatherCell: UITableViewCell {
     
     // - UI
     private lazy var mainView = UIView()
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
+    
+    // - DataSource
+    private lazy var currentWeatherDataSource: CurrentWeatherDataSourceProtocol = CurrentWeatherDataSource(collectionView: collectionView)
+    
+    // - Data
+    private var data: [HourWeatherData] = []
 
     // - LifeCycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -25,39 +32,58 @@ final class HourlyWeatherCell: UITableViewCell {
         super.init(coder: aDecoder)
         configure()
     }
-    
+
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         mainView.roundCorners(topLeft: 0, topRight: 0, bottomLeft: 14, bottomRight: 14)
     }
-        
+    
+}
+
+// MARK: - Set
+extension HourlyWeatherCell {
+    
+    func set(data: [HourWeatherData]) {
+        currentWeatherDataSource.set(data: data)
+    }
+    
 }
 
 // MARK: - Configure
 private extension HourlyWeatherCell {
-    
+   
     func configure() {
+        configureDataSource()
         configureUI()
         addSubviews()
         makeConstraints()
     }
     
+    func configureDataSource() {
+        currentWeatherDataSource = CurrentWeatherDataSource(collectionView: collectionView)
+    }
+    
+    
     func configureUI() {
         backgroundColor = .clear
+        collectionView.backgroundColor = .clear
     }
     
     func addSubviews() {
         contentView.addSubview(mainView)
         mainView.addBlur()
+        mainView.addSubview(collectionView)
     }
     
     func makeConstraints() {
         mainView.snp.makeConstraints {
             $0.top.bottom.leading.trailing.equalToSuperview()
         }
+        
+        collectionView.snp.makeConstraints {
+            $0.top.bottom.leading.trailing.equalToSuperview()
+            $0.height.equalTo(110)
+        }
     }
     
 }
-
-
-

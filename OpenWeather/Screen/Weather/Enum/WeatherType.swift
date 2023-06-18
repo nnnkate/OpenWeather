@@ -10,6 +10,7 @@ import UIKit
 enum WeatherType: String {
     case clouds
     case snow
+    case rain
 }
 
 extension WeatherType {
@@ -19,6 +20,8 @@ extension WeatherType {
             return UIImage(named: "clouds")
         case .snow:
             return UIImage(named: "snow")
+        case .rain:
+            return UIImage(named: "rain")
         }
     }
 }

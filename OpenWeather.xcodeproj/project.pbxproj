@@ -19,7 +19,7 @@
 		8550237A2A3D7BA500D563AF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 855023792A3D7BA500D563AF /* SnapKit */; };
 		8550237C2A3D7BCF00D563AF /* WeatherType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8550237B2A3D7BCF00D563AF /* WeatherType.swift */; };
 		8550237E2A3D7BE000D563AF /* CurrentWeatherType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8550237D2A3D7BE000D563AF /* CurrentWeatherType.swift */; };
-		855023822A3D7C4400D563AF /* CurrentWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855023812A3D7C4400D563AF /* CurrentWeatherCell.swift */; };
+		855023822A3D7C4400D563AF /* CurrentWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855023812A3D7C4400D563AF /* CurrentWeatherView.swift */; };
 		855023852A3D7C5600D563AF /* DayWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855023842A3D7C5600D563AF /* DayWeatherCell.swift */; };
 		8550238A2A3D7C9C00D563AF /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855023892A3D7C9C00D563AF /* Label.swift */; };
 		8550238F2A3D7CE300D563AF /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8550238E2A3D7CE300D563AF /* NetworkManager.swift */; };
@@ -43,6 +43,9 @@
 		855023DA2A3DA3CB00D563AF /* AdditionalInformationDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855023D92A3DA3CB00D563AF /* AdditionalInformationDataSource.swift */; };
 		855023DD2A3DA6EA00D563AF /* AdditionalInformationItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855023DC2A3DA6EA00D563AF /* AdditionalInformationItemCell.swift */; };
 		855023E02A3DCB7300D563AF /* PhoneSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855023DF2A3DCB7300D563AF /* PhoneSize.swift */; };
+		855023E72A3E438900D563AF /* HourWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855023E62A3E438900D563AF /* HourWeatherCell.swift */; };
+		855023EC2A3ED30B00D563AF /* HourWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855023EB2A3ED30B00D563AF /* HourWeatherData.swift */; };
+		855023EE2A3ED32500D563AF /* CurrentWeatherDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855023ED2A3ED32500D563AF /* CurrentWeatherDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,7 +62,7 @@
 		855023762A3D7B3E00D563AF /* WeatherBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherBottomView.swift; sourceTree = "<group>"; };
 		8550237B2A3D7BCF00D563AF /* WeatherType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherType.swift; sourceTree = "<group>"; };
 		8550237D2A3D7BE000D563AF /* CurrentWeatherType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherType.swift; sourceTree = "<group>"; };
-		855023812A3D7C4400D563AF /* CurrentWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherCell.swift; sourceTree = "<group>"; };
+		855023812A3D7C4400D563AF /* CurrentWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherView.swift; sourceTree = "<group>"; };
 		855023842A3D7C5600D563AF /* DayWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWeatherCell.swift; sourceTree = "<group>"; };
 		855023892A3D7C9C00D563AF /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		8550238E2A3D7CE300D563AF /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -83,6 +86,9 @@
 		855023D92A3DA3CB00D563AF /* AdditionalInformationDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInformationDataSource.swift; sourceTree = "<group>"; };
 		855023DC2A3DA6EA00D563AF /* AdditionalInformationItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInformationItemCell.swift; sourceTree = "<group>"; };
 		855023DF2A3DCB7300D563AF /* PhoneSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneSize.swift; sourceTree = "<group>"; };
+		855023E62A3E438900D563AF /* HourWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourWeatherCell.swift; sourceTree = "<group>"; };
+		855023EB2A3ED30B00D563AF /* HourWeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourWeatherData.swift; sourceTree = "<group>"; };
+		855023ED2A3ED32500D563AF /* CurrentWeatherDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,7 +215,6 @@
 				855023D12A3D9E1100D563AF /* HourlyWeather */,
 				8550239C2A3D7D9500D563AF /* SectionHeader */,
 				855023832A3D7C4C00D563AF /* DayWeather */,
-				855023802A3D7C3A00D563AF /* CurrentWeather */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -217,6 +222,7 @@
 		8550236E2A3D7A4400D563AF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				855023802A3D7C3A00D563AF /* CurrentWeather */,
 				8550237F2A3D7C2B00D563AF /* Header */,
 				855023752A3D7B3500D563AF /* Bottom */,
 			);
@@ -259,7 +265,7 @@
 		855023802A3D7C3A00D563AF /* CurrentWeather */ = {
 			isa = PBXGroup;
 			children = (
-				855023812A3D7C4400D563AF /* CurrentWeatherCell.swift */,
+				855023812A3D7C4400D563AF /* CurrentWeatherView.swift */,
 			);
 			path = CurrentWeather;
 			sourceTree = "<group>";
@@ -429,7 +435,10 @@
 		855023D12A3D9E1100D563AF /* HourlyWeather */ = {
 			isa = PBXGroup;
 			children = (
-				855023D22A3D9E2100D563AF /* HourlyWeatherCell.swift */,
+				855023EA2A3ED2FF00D563AF /* Model */,
+				855023E92A3ED2F100D563AF /* DataSource */,
+				855023E12A3E435300D563AF /* Cell */,
+				855023E82A3ED2E900D563AF /* View */,
 			);
 			path = HourlyWeather;
 			sourceTree = "<group>";
@@ -466,6 +475,38 @@
 				855023DC2A3DA6EA00D563AF /* AdditionalInformationItemCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		855023E12A3E435300D563AF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				855023E62A3E438900D563AF /* HourWeatherCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		855023E82A3ED2E900D563AF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				855023D22A3D9E2100D563AF /* HourlyWeatherCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		855023E92A3ED2F100D563AF /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				855023ED2A3ED32500D563AF /* CurrentWeatherDataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		855023EA2A3ED2FF00D563AF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				855023EB2A3ED30B00D563AF /* HourWeatherData.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -569,12 +610,15 @@
 				855023942A3D7D2400D563AF /* Constant.swift in Sources */,
 				855023522A3D77D600D563AF /* AppDelegate.swift in Sources */,
 				855023772A3D7B3E00D563AF /* WeatherBottomView.swift in Sources */,
+				855023EE2A3ED32500D563AF /* CurrentWeatherDataSource.swift in Sources */,
 				855023BA2A3D8EE700D563AF /* UIView+Blur.swift in Sources */,
 				855023D02A3D99BE00D563AF /* Color.swift in Sources */,
+				855023EC2A3ED30B00D563AF /* HourWeatherData.swift in Sources */,
 				855023852A3D7C5600D563AF /* DayWeatherCell.swift in Sources */,
 				855023542A3D77D600D563AF /* SceneDelegate.swift in Sources */,
-				855023822A3D7C4400D563AF /* CurrentWeatherCell.swift in Sources */,
+				855023822A3D7C4400D563AF /* CurrentWeatherView.swift in Sources */,
 				8550239E2A3D7DA100D563AF /* WeatherSectionHeader.swift in Sources */,
+				855023E72A3E438900D563AF /* HourWeatherCell.swift in Sources */,
 				855023912A3D7CEE00D563AF /* LocationManager.swift in Sources */,
 				855023CD2A3D974000D563AF /* String+Localizable.swift in Sources */,
 			);
