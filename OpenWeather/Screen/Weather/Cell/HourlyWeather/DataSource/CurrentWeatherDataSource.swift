@@ -63,7 +63,7 @@ extension CurrentWeatherDataSource: UICollectionViewDataSource {
 extension CurrentWeatherDataSource: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: 50, height: 90)
+        CGSize(width: 50, height: 80)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -87,6 +87,7 @@ private extension CurrentWeatherDataSource {
     
     func configureCollectionViewLayout() {
         let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
         layout.invalidateLayout()
         collectionView.collectionViewLayout = layout
     }

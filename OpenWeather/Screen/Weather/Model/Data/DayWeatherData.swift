@@ -18,6 +18,13 @@ struct DayWeatherData {
                                   weatherType: WeatherType(rawValue: "clouds") ?? .clouds) // TODO: ADD
         return data
     }
+    
+    static func convertFromDb(realm: DayWeatherRealm) -> DayWeatherData {
+        DayWeatherData(date: realm.date,
+                       minTemperature: realm.minTemperature,
+                       maxTemperature: realm.maxTemperature,
+                       weatherType: realm.weatherType)
+    }
 }
 
 

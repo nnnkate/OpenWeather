@@ -9,8 +9,9 @@ import Foundation
 import CoreLocation
 
 protocol WeatherPresenterDelegate: AnyObject {
-    func updateCurrentWeather(_ data: CurrentWeatherResponse)
+    func updateCurrentWeather(_ data: CurrentWeatherData)
     func updateSeveralDaysWeather(_ data: [DayWeatherData])
+    func updateData()
 }
 
 protocol WeatherPresenterProtocol {
@@ -38,8 +39,7 @@ final class WeatherPresenter {
 extension WeatherPresenter: LocationManagerDelegate {
     
     func locationDidUpdate(_ location: CLLocation?) {
-        loadCurrentWeather()
-        loadSeveralDaysWeather()
+        loadData()
     }
     
 }
@@ -53,30 +53,79 @@ extension WeatherPresenter: WeatherPresenterProtocol {
 
 }
 
+// MARK: - Update
+private extension WeatherPresenter {
+
+    func updateCurrentWeather() {
+        if let item = CurrentWeatherDatabaseManager().items.first {
+            delegate?.updateCurrentWeather(CurrentWeatherData.convertFromDb(realm: item))
+            return
+        }
+        delegate?.updateCurrentWeather(CurrentWeatherData())
+    }
+   
+    func updateSeveralDaysWeather() {
+        let items = DayWeatherDatabaseManager().items
+        delegate?.updateSeveralDaysWeather(items.map { DayWeatherData.convertFromDb(realm: $0) })
+    }
+    
+}
+
 // MARK: - Load
 private extension WeatherPresenter {
     
-    func loadCurrentWeather() {
+    func loadData() {
+        let queue = DispatchQueue(label: "LoadData")
+        let group = DispatchGroup()
+        group.enter()
+        queue.async(group: group) { [weak self] in
+            self?.loadCurrentWeather {
+                self?.updateCurrentWeather()
+                group.leave()
+            }
+        }
+        queue.async(group: group) { [weak self] in
+            self?.loadSeveralDaysWeather {
+                self?.updateSeveralDaysWeather()
+                group.leave()
+            }
+        }
+        group.notify(queue: queue) {
+            DispatchQueue.main.async { [weak self] in
+                self?.delegate?.updateData()
+            }
+        }
+               
+    }
+    
+    func loadCurrentWeather(completion: @escaping () -> ()) {
         guard let coordinate = locationManager.location?.coordinate else { return }
         networkManager.loadCurrentWeather(latitude: coordinate.latitude,
-                                          longitude: coordinate.longitude) { [weak self] data, error in
+                                          longitude: coordinate.longitude) { data, error in
             if let error = error {
-                debugPrint(error) // TODO: error handler
+                debugPrint(error)
             }
-            guard let self, let data else { return }
-            self.delegate?.updateCurrentWeather(data)
+            guard let data else { return }
+            let dto = CurrentWeatherData.convertFromDto(dto: data)
+            let weatherRealm = CurrentWeatherRealm.convertFromDto(dto: dto)
+            CurrentWeatherDatabaseManager().rewrite([weatherRealm])
+            completion()
         }
     }
     
-    func loadSeveralDaysWeather() {
+    func loadSeveralDaysWeather(completion: @escaping () -> ()) {
         guard let coordinate = locationManager.location?.coordinate else { return }
         networkManager.loadSeveralDaysWeather(latitude: coordinate.latitude,
                                               longitude: coordinate.longitude) { [weak self] data, error in
             if let error = error {
-                debugPrint(error) // TODO: error handler
+                debugPrint(error)
             }
             guard let self, let data else { return }
-            self.delegate?.updateSeveralDaysWeather(data.list.map { DayWeatherData.convertFromDto(dto: $0) })
+            self.updateSeveralDaysWeather()
+            let dto = data.list.map { DayWeatherData.convertFromDto(dto: $0) }
+            let weatherRealm = dto.map { DayWeatherRealm.convertFromDto(dto: $0) }
+            DayWeatherDatabaseManager().rewrite(weatherRealm)
+            self.updateSeveralDaysWeather()
         }
     }
     
@@ -86,7 +135,8 @@ private extension WeatherPresenter {
 private extension WeatherPresenter {
     
     func configure() {
-
+        updateCurrentWeather()
+        updateSeveralDaysWeather()
     }
     
 }

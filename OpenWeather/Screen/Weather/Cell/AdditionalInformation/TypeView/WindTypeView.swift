@@ -20,7 +20,9 @@ final class WindTypeView: UIView {
         return view
     }()
     private lazy var valueLabel = Label(font: .systemFont(ofSize: 20), textAlignment: .center)
-    private lazy var titleLabel = Label(font: .systemFont(ofSize: 14, weight: .medium), textAlignment: .center)
+    private lazy var titleLabel = Label(text: "wind_units".localized,
+                                        font: .systemFont(ofSize: 14, weight: .medium),
+                                        textAlignment: .center)
 
     // - LifeCycle
     init() {
@@ -40,13 +42,11 @@ final class WindTypeView: UIView {
     
 }
 
-// MARK: - Update
-private extension WindTypeView {
+// MARK: - AdditionalTypeViewProtocol
+extension WindTypeView: AdditionalTypeViewProtocol {
     
-    func updateData() {
-        // TODO: for test
-        valueLabel.text = "1"
-        titleLabel.text = "m/s"
+    func set(data: CurrentWeatherData?) {
+        valueLabel.text = "\(data?.wind ?? 0)"
     }
     
 }
@@ -58,7 +58,6 @@ private extension WindTypeView {
         configureUI()
         addSubviews()
         makeConstraints()
-        updateData()
     }
     
     func configureUI() {

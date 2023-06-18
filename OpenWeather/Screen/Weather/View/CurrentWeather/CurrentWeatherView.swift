@@ -19,13 +19,13 @@ final class CurrentWeatherView: UIView {
         return view
     }()
     private lazy var cityLabel = Label(font: .systemFont(ofSize: 30), textAlignment: .center)
-    private lazy var temperatureLabel = Label(font: .systemFont(ofSize: 60, weight: .light), textAlignment: .center)
+    private lazy var temperatureLabel = Label(font: .systemFont(ofSize: PhoneSize.type == .small ? 60 : 90, weight: .thin), textAlignment: .center)
     private lazy var conditionLabel = Label(font: UIFont(name: "Inter-Medium", size: 20), textAlignment: .center)
     private lazy var minMaxTemperatureLabel = Label(font: UIFont(name: "Inter-Medium", size: 17), textAlignment: .center)
    
     
     // - Data
-    private(set) var data: DayWeatherData?
+    private(set) var data: CurrentWeatherData?
     private let spacing: CGFloat = PhoneSize.type == .small ? 30 : 60
     private let maxInset: CGFloat = 80
     private let minInset: CGFloat = 40
@@ -52,7 +52,7 @@ final class CurrentWeatherView: UIView {
 // MARK: - Set
 extension CurrentWeatherView {
     
-    func set(data: DayWeatherData) {
+    func set(data: CurrentWeatherData) {
         self.data = data
         updateData()
     }
@@ -100,10 +100,11 @@ private extension CurrentWeatherView {
             minMaxTemperatureLabel.text = ""
             return
         }
-        cityLabel.text = "Minsk"
-        temperatureLabel.text = "25-"
-        conditionLabel.text = "Part Clo"
-        minMaxTemperatureLabel.text = "J:58-"
+        cityLabel.text = data.cityName
+        let temperature = data.temperature
+        temperatureLabel.text = "\(temperature)°"
+        conditionLabel.text = data.condition
+        minMaxTemperatureLabel.text = "H:\(data.maxTemperature)°  L:\(data.minTemperature)°"
     }
     
 }

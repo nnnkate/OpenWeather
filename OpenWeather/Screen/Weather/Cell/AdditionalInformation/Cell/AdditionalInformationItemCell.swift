@@ -38,8 +38,15 @@ final class AdditionalInformationItemCell: UICollectionViewCell {
 // MARK: - Set
 extension AdditionalInformationItemCell {
     
-    func set(type: AdditionalInformationType?) {
-        reconfigureTypeView(view: type?.mainView ?? UIView())
+    func set(type: AdditionalInformationType?, data: CurrentWeatherData?) {
+        typeView.removeFromSuperview()
+        typeView = type?.mainView ?? UIView()
+        (typeView as? AdditionalTypeViewProtocol)?.set(data: data)
+        mainView.addSubview(typeView)
+        typeView.snp.makeConstraints {
+            $0.bottom.leading.trailing.equalToSuperview()
+            $0.top.equalTo(headerView.snp.bottom)
+        }
     }
     
     func set(title: String, image: UIImage?, imageHeight: CGFloat = 16, imageWidth: CGFloat = 16) {
@@ -74,15 +81,6 @@ private extension AdditionalInformationItemCell {
         
         headerView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
-        }
-    }
-    
-    func reconfigureTypeView(view: UIView) {
-        typeView = view
-        mainView.addSubview(typeView)
-        typeView.snp.makeConstraints {
-            $0.bottom.leading.trailing.equalToSuperview()
-            $0.top.equalTo(headerView.snp.bottom)
         }
     }
     

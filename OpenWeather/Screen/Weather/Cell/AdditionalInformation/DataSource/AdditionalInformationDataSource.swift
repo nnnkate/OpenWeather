@@ -9,12 +9,16 @@ import UIKit
 
 protocol AdditionalInformationDataSourceProtocol {
     func update()
+    func set(data: CurrentWeatherData?)
 }
 
 final class AdditionalInformationDataSource: NSObject {
     
     // - UI
     private unowned var collectionView: UICollectionView
+    
+    // - Data
+    private var data: CurrentWeatherData?
     
     // - Data
     private let inset: CGFloat = 9
@@ -30,6 +34,11 @@ final class AdditionalInformationDataSource: NSObject {
 
 // MARK: - AdditionalWeatherInformationDataSourceProtocol
 extension AdditionalInformationDataSource: AdditionalInformationDataSourceProtocol {
+    
+    func set(data: CurrentWeatherData?) {
+        self.data = data
+        update()
+    }
     
     func update() {
         collectionView.reloadData()
@@ -48,8 +57,8 @@ extension AdditionalInformationDataSource: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AdditionalInformationItemCell.reuseID, for: indexPath) as? AdditionalInformationItemCell {
             let type = AdditionalInformationType(rawValue: indexPath.row)
-            cell.set(type: type)
-            cell.set(title: type?.title ?? "", image: type?.image, imageWidth: type?.imageWidth ?? 16)
+            cell.set(type: type, data: data)
+            cell.set(title: type?.title ?? "", image: type?.image, imageHeight: type?.imageHeight ?? 16, imageWidth: type?.imageWidth ?? 16)
             return cell
         }
         
@@ -97,6 +106,7 @@ private extension AdditionalInformationDataSource {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.contentInset = .init(top: 0, left: 0, bottom: 0, right: 0)
+        collectionView.isScrollEnabled = false
     }
     
     func registerCells() {

@@ -67,7 +67,7 @@ private extension WeatherBottomView {
     }
     
     func addSubviews() {
-        addBlur()
+        addBlur(alpha: 0.98)
         addSubview(mapImageView)
         addSubview(locationImageView)
         addSubview(listImageView)

@@ -7,47 +7,15 @@
 
 import UIKit
 
-enum WeatherSectionType: Int, CaseIterable {
-    case hourly
-    case forecast
-    case additional
-}
-
-extension WeatherSectionType {
-    
-    var title: String {
-        switch self {
-        case .forecast:
-            return "forecast_section_title".localized
-        case .hourly:
-            return "hourly_section_title".localized
-        default:
-            return ""
-        }
-    }
-    
-    var image: UIImage {
-        switch self {
-        case .forecast:
-            return .init(systemName: "calendar") ?? .init()
-        case .hourly:
-            return .init(systemName: "clock") ?? .init()
-        default:
-            return .init()
-        }
-    }
-    
-}
-
 protocol WeatherDataSourseProtocol {
-    func set(forecastData:  [DayWeatherData])
+    func set(forecastData: [DayWeatherData])
+    func set(currentData: CurrentWeatherData) 
     func reloadData()
 }
 
 protocol WeatherDataSourseDelegate: AnyObject {
     func scrollViewDidScroll(_ scrollView: UIScrollView)
 }
-
 
 final class WeatherDataSourse: NSObject {
     
@@ -58,6 +26,7 @@ final class WeatherDataSourse: NSObject {
     private weak var delegate: WeatherDataSourseDelegate?
     
     // - Data
+    private var currentData: CurrentWeatherData?
     private var forecastData: [DayWeatherData] = []
     
     // - Init
@@ -73,14 +42,17 @@ final class WeatherDataSourse: NSObject {
 // MARK: - WeatherDataSourseProtocol
 extension WeatherDataSourse: WeatherDataSourseProtocol {
     
-    func set(forecastData:  [DayWeatherData]) {
+    func set(forecastData: [DayWeatherData]) {
         self.forecastData = forecastData
+    }
+    
+    func set(currentData: CurrentWeatherData) {
+        self.currentData = currentData
     }
     
     func reloadData() {
         tableView.reloadData()
     }
-    
     
 }
 
@@ -90,24 +62,7 @@ extension WeatherDataSourse: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         WeatherSectionType.allCases.count
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-    }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        false
-    }
 
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-    }
-
-    
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         indexPath
     }
@@ -120,7 +75,7 @@ extension WeatherDataSourse: UITableViewDataSource {
             return 1
         }
     }
-    
+        
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch WeatherSectionType(rawValue: indexPath.section) {
         case .forecast:
@@ -133,6 +88,15 @@ extension WeatherDataSourse: UITableViewDataSource {
             return UITableViewCell()
         }
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
+    {
+        if WeatherSectionType(rawValue: indexPath.section)  == .forecast && (cell as? DayWeatherCell)?.isLast == true {
+            cell.roundCorners(bottomLeft: 14, bottomRight: 14)
+        }
+           
+    }
+    
 }
 
 // MARK: - UITableViewDelegate
@@ -158,6 +122,14 @@ extension WeatherDataSourse: UITableViewDelegate {
         default:
             return 0
         }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        0
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -228,6 +200,9 @@ private extension WeatherDataSourse {
             let index = indexPath.row
             let data = forecastData[index]
             cell.set(data: data, isLast: index == forecastData.count - 1)
+            if index == forecastData.count - 1 {
+                print()
+            }
             return cell
         }
         
@@ -236,6 +211,7 @@ private extension WeatherDataSourse {
     
     func additionalInformationCell(cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: AdditionalInformationCell.reuseID, for: indexPath) as? AdditionalInformationCell {
+            cell.set(data: currentData)
             return cell
         }
         
@@ -256,11 +232,11 @@ private extension WeatherDataSourse {
     func setupDataSource() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.contentInset = .init(top: 0, left: 0, bottom: 80, right: 0)
+        tableView.contentInset = .init(top: 0, left: 0, bottom: PhoneSize.type == .small ? 30 : 80, right: 0)
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         tableView.sectionHeaderTopPadding = 9
-        tableView.allowsSelection = false // TODO: 
+        tableView.allowsSelection = false // TODO:
     }
     
     func registerCells() {

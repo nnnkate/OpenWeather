@@ -53,16 +53,10 @@ extension HourlyWeatherCell {
 private extension HourlyWeatherCell {
    
     func configure() {
-        configureDataSource()
         configureUI()
         addSubviews()
         makeConstraints()
     }
-    
-    func configureDataSource() {
-        currentWeatherDataSource = CurrentWeatherDataSource(collectionView: collectionView)
-    }
-    
     
     func configureUI() {
         backgroundColor = .clear
@@ -81,8 +75,9 @@ private extension HourlyWeatherCell {
         }
         
         collectionView.snp.makeConstraints {
-            $0.top.bottom.leading.trailing.equalToSuperview()
-            $0.height.equalTo(110)
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(80)
+            $0.bottom.equalTo(-10)
         }
     }
     

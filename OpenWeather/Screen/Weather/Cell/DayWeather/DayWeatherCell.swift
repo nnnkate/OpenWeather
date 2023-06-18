@@ -33,7 +33,7 @@ final class DayWeatherCell: UITableViewCell {
         return view
     }()
     private lazy var conditionLabel = Label(color: .blue, font: UIFont(name: "Inter-Medium", size: 11))
-    private lazy var minTemperatureLabel = Label(color: .gray, font: UIFont(name: "Inter-Medium", size: 16))
+    private lazy var minTemperatureLabel = Label(color: .transparentTextColor, font: UIFont(name: "Inter-Medium", size: 16))
     private lazy var sliderImageView = UIImageView(image: UIImage(named: "slider"))
     private lazy var maxTemperatureLabel = Label(font: UIFont(name: "Inter-Medium", size: 16))
     
@@ -52,11 +52,6 @@ final class DayWeatherCell: UITableViewCell {
         configure()
     }
     
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-        mainView.roundCorners(topLeft: 0, topRight: 0, bottomLeft: isLast ? 14 : 0, bottomRight: isLast ? 14 : 0)
-    }
-        
 }
 
 // MARK: - Set
@@ -85,7 +80,6 @@ private extension DayWeatherCell {
         let weatherType = data.weatherType
         conditionImageView.image = weatherType?.image
         conditionLabel.isHidden = weatherType != .snow && weatherType != .rain
-        conditionLabel.text = weatherType == .snow ? "70 %" : "" // TODO:
         minTemperatureLabel.text = "\(String(data.minTemperature))°"
         maxTemperatureLabel.text =  "\(String(data.maxTemperature))°"
     }

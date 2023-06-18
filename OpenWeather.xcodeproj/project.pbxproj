@@ -49,6 +49,17 @@
 		855023F12A3EE23F00D563AF /* AdditionalInformationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855023F02A3EE23F00D563AF /* AdditionalInformationType.swift */; };
 		855023F42A3EE37A00D563AF /* WindTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855023F32A3EE37900D563AF /* WindTypeView.swift */; };
 		855023F62A3EEDD500D563AF /* HumidityTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855023F52A3EEDD500D563AF /* HumidityTypeView.swift */; };
+		855023F82A3EEF1500D563AF /* FeelsLikeTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855023F72A3EEF1500D563AF /* FeelsLikeTypeView.swift */; };
+		855023FB2A3EF1DF00D563AF /* WeatherSectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855023FA2A3EF1DF00D563AF /* WeatherSectionType.swift */; };
+		855023FE2A3EFAC500D563AF /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 855023FD2A3EFAC500D563AF /* Realm */; };
+		855024002A3EFAC500D563AF /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 855023FF2A3EFAC500D563AF /* RealmSwift */; };
+		855024032A3EFB2000D563AF /* BaseDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855024022A3EFB2000D563AF /* BaseDatabaseManager.swift */; };
+		855024072A3EFBCA00D563AF /* CurrentWeatherRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855024062A3EFBCA00D563AF /* CurrentWeatherRealm.swift */; };
+		855024092A3EFC0F00D563AF /* CurrentWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855024082A3EFC0F00D563AF /* CurrentWeatherData.swift */; };
+		8550240B2A3F1F8200D563AF /* DayWeatherRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8550240A2A3F1F8200D563AF /* DayWeatherRealm.swift */; };
+		8550240D2A3F203300D563AF /* WeatherDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8550240C2A3F203300D563AF /* WeatherDatabaseManager.swift */; };
+		855024112A3F2A9C00D563AF /* AdditionalTypeViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855024102A3F2A9C00D563AF /* AdditionalTypeViewProtocol.swift */; };
+		855024132A3F2B5300D563AF /* VisibilityTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855024122A3F2B5300D563AF /* VisibilityTypeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +106,15 @@
 		855023F02A3EE23F00D563AF /* AdditionalInformationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInformationType.swift; sourceTree = "<group>"; };
 		855023F32A3EE37900D563AF /* WindTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindTypeView.swift; sourceTree = "<group>"; };
 		855023F52A3EEDD500D563AF /* HumidityTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityTypeView.swift; sourceTree = "<group>"; };
+		855023F72A3EEF1500D563AF /* FeelsLikeTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelsLikeTypeView.swift; sourceTree = "<group>"; };
+		855023FA2A3EF1DF00D563AF /* WeatherSectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSectionType.swift; sourceTree = "<group>"; };
+		855024022A3EFB2000D563AF /* BaseDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDatabaseManager.swift; sourceTree = "<group>"; };
+		855024062A3EFBCA00D563AF /* CurrentWeatherRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherRealm.swift; sourceTree = "<group>"; };
+		855024082A3EFC0F00D563AF /* CurrentWeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherData.swift; sourceTree = "<group>"; };
+		8550240A2A3F1F8200D563AF /* DayWeatherRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWeatherRealm.swift; sourceTree = "<group>"; };
+		8550240C2A3F203300D563AF /* WeatherDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDatabaseManager.swift; sourceTree = "<group>"; };
+		855024102A3F2A9C00D563AF /* AdditionalTypeViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalTypeViewProtocol.swift; sourceTree = "<group>"; };
+		855024122A3F2B5300D563AF /* VisibilityTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisibilityTypeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +122,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				855024002A3EFAC500D563AF /* RealmSwift in Frameworks */,
+				855023FE2A3EFAC500D563AF /* Realm in Frameworks */,
 				8550237A2A3D7BA500D563AF /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,6 +165,7 @@
 		855023652A3D79EB00D563AF /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				855024042A3EFBB200D563AF /* Model */,
 				855023C72A3D968B00D563AF /* Enum */,
 				855023A12A3D7EDB00D563AF /* Network */,
 				8550238B2A3D7CC100D563AF /* Manager */,
@@ -248,6 +271,7 @@
 			children = (
 				8550237B2A3D7BCF00D563AF /* WeatherType.swift */,
 				8550237D2A3D7BE000D563AF /* CurrentWeatherType.swift */,
+				855023FA2A3EF1DF00D563AF /* WeatherSectionType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -314,6 +338,7 @@
 		8550238B2A3D7CC100D563AF /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				855024012A3EFB0200D563AF /* Database */,
 				8550238D2A3D7CD700D563AF /* Location */,
 			);
 			path = Manager;
@@ -347,6 +372,7 @@
 			isa = PBXGroup;
 			children = (
 				8550239A2A3D7D7500D563AF /* DayWeatherData.swift */,
+				855024082A3EFC0F00D563AF /* CurrentWeatherData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -452,7 +478,7 @@
 		855023D42A3DA2AB00D563AF /* AdditionalInformation */ = {
 			isa = PBXGroup;
 			children = (
-				855023F22A3EE35200D563AF /* Type */,
+				855023F22A3EE35200D563AF /* TypeView */,
 				855023EF2A3EE23100D563AF /* Enum */,
 				855023DB2A3DA6D000D563AF /* Cell */,
 				855023D82A3DA3B900D563AF /* DataSource */,
@@ -525,13 +551,58 @@
 			path = Enum;
 			sourceTree = "<group>";
 		};
-		855023F22A3EE35200D563AF /* Type */ = {
+		855023F22A3EE35200D563AF /* TypeView */ = {
 			isa = PBXGroup;
 			children = (
+				8550240F2A3F2A8400D563AF /* Protocol */,
 				855023F32A3EE37900D563AF /* WindTypeView.swift */,
 				855023F52A3EEDD500D563AF /* HumidityTypeView.swift */,
+				855023F72A3EEF1500D563AF /* FeelsLikeTypeView.swift */,
+				855024122A3F2B5300D563AF /* VisibilityTypeView.swift */,
 			);
-			path = Type;
+			path = TypeView;
+			sourceTree = "<group>";
+		};
+		855024012A3EFB0200D563AF /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				8550240E2A3F203E00D563AF /* Base */,
+				8550240C2A3F203300D563AF /* WeatherDatabaseManager.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		855024042A3EFBB200D563AF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				855024052A3EFBB700D563AF /* Realm */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		855024052A3EFBB700D563AF /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				855024062A3EFBCA00D563AF /* CurrentWeatherRealm.swift */,
+				8550240A2A3F1F8200D563AF /* DayWeatherRealm.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		8550240E2A3F203E00D563AF /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				855024022A3EFB2000D563AF /* BaseDatabaseManager.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		8550240F2A3F2A8400D563AF /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				855024102A3F2A9C00D563AF /* AdditionalTypeViewProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -552,6 +623,8 @@
 			name = OpenWeather;
 			packageProductDependencies = (
 				855023792A3D7BA500D563AF /* SnapKit */,
+				855023FD2A3EFAC500D563AF /* Realm */,
+				855023FF2A3EFAC500D563AF /* RealmSwift */,
 			);
 			productName = OpenWeather;
 			productReference = 8550234E2A3D77D600D563AF /* OpenWeather.app */;
@@ -583,6 +656,7 @@
 			mainGroup = 855023452A3D77D600D563AF;
 			packageReferences = (
 				855023782A3D7BA500D563AF /* XCRemoteSwiftPackageReference "SnapKit" */,
+				855023FC2A3EFAC500D563AF /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 8550234F2A3D77D600D563AF /* Products */;
 			projectDirPath = "";
@@ -616,9 +690,11 @@
 				8550238F2A3D7CE300D563AF /* NetworkManager.swift in Sources */,
 				855023D32A3D9E2100D563AF /* HourlyWeatherCell.swift in Sources */,
 				855023DA2A3DA3CB00D563AF /* AdditionalInformationDataSource.swift in Sources */,
+				855024092A3EFC0F00D563AF /* CurrentWeatherData.swift in Sources */,
 				8550237E2A3D7BE000D563AF /* CurrentWeatherType.swift in Sources */,
 				855023742A3D7AB200D563AF /* WeatherDataSourse.swift in Sources */,
 				855023F42A3EE37A00D563AF /* WindTypeView.swift in Sources */,
+				855024032A3EFB2000D563AF /* BaseDatabaseManager.swift in Sources */,
 				855023562A3D77D600D563AF /* WeatherViewController.swift in Sources */,
 				855023982A3D7D5000D563AF /* WeatherResponse.swift in Sources */,
 				8550237C2A3D7BCF00D563AF /* WeatherType.swift in Sources */,
@@ -627,20 +703,25 @@
 				8550239B2A3D7D7500D563AF /* DayWeatherData.swift in Sources */,
 				855023C92A3D969300D563AF /* WeekDay.swift in Sources */,
 				855023C02A3D93EE00D563AF /* UIView+CornerRadius.swift in Sources */,
+				855023FB2A3EF1DF00D563AF /* WeatherSectionType.swift in Sources */,
 				855023E02A3DCB7300D563AF /* PhoneSize.swift in Sources */,
 				855023722A3D7A9F00D563AF /* WeatherPresenter.swift in Sources */,
 				855023C32A3D95EE00D563AF /* Date+Extension.swift in Sources */,
 				855023DD2A3DA6EA00D563AF /* AdditionalInformationItemCell.swift in Sources */,
+				8550240B2A3F1F8200D563AF /* DayWeatherRealm.swift in Sources */,
 				855023C62A3D962200D563AF /* String+Extension.swift in Sources */,
 				855023D62A3DA2C100D563AF /* AdditionalInformationCell.swift in Sources */,
 				855023942A3D7D2400D563AF /* Constant.swift in Sources */,
 				855023522A3D77D600D563AF /* AppDelegate.swift in Sources */,
+				855024072A3EFBCA00D563AF /* CurrentWeatherRealm.swift in Sources */,
 				855023F12A3EE23F00D563AF /* AdditionalInformationType.swift in Sources */,
 				855023772A3D7B3E00D563AF /* WeatherBottomView.swift in Sources */,
+				855023F82A3EEF1500D563AF /* FeelsLikeTypeView.swift in Sources */,
 				855023EE2A3ED32500D563AF /* CurrentWeatherDataSource.swift in Sources */,
 				855023BA2A3D8EE700D563AF /* UIView+Blur.swift in Sources */,
 				855023D02A3D99BE00D563AF /* Color.swift in Sources */,
 				855023EC2A3ED30B00D563AF /* HourWeatherData.swift in Sources */,
+				8550240D2A3F203300D563AF /* WeatherDatabaseManager.swift in Sources */,
 				855023852A3D7C5600D563AF /* DayWeatherCell.swift in Sources */,
 				855023542A3D77D600D563AF /* SceneDelegate.swift in Sources */,
 				855023822A3D7C4400D563AF /* CurrentWeatherView.swift in Sources */,
@@ -648,6 +729,8 @@
 				855023E72A3E438900D563AF /* HourWeatherCell.swift in Sources */,
 				855023912A3D7CEE00D563AF /* LocationManager.swift in Sources */,
 				855023CD2A3D974000D563AF /* String+Localizable.swift in Sources */,
+				855024132A3F2B5300D563AF /* VisibilityTypeView.swift in Sources */,
+				855024112A3F2A9C00D563AF /* AdditionalTypeViewProtocol.swift in Sources */,
 				855023F62A3EEDD500D563AF /* HumidityTypeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -876,6 +959,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		855023FC2A3EFAC500D563AF /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.40.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -883,6 +974,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 855023782A3D7BA500D563AF /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		855023FD2A3EFAC500D563AF /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 855023FC2A3EFAC500D563AF /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		855023FF2A3EFAC500D563AF /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 855023FC2A3EFAC500D563AF /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

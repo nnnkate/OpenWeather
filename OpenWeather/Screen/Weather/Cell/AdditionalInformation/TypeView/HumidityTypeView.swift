@@ -12,7 +12,7 @@ final class HumidityTypeView: UIView {
     // - UI
     private lazy var mainView = UIView()
     private lazy var valueLabel = Label(font: .systemFont(ofSize: 32, weight: .regular))
-    private lazy var titleLabel = Label(font: .systemFont(ofSize: 14, weight: .medium), numberOfLines: 2)
+    private lazy var titleLabel = Label(font: .systemFont(ofSize: 15, weight: .medium), numberOfLines: 2)
 
     // - LifeCycle
     init() {
@@ -28,6 +28,15 @@ final class HumidityTypeView: UIView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configure()
+    }
+    
+}
+
+// MARK: - AdditionalTypeViewProtocol
+extension HumidityTypeView: AdditionalTypeViewProtocol {
+    
+    func set(data: CurrentWeatherData?) {
+        
     }
     
 }

@@ -31,6 +31,15 @@ final class AdditionalInformationCell: UITableViewCell {
         
 }
 
+// MARK: - Set
+extension AdditionalInformationCell {
+    
+    func set(data: CurrentWeatherData?) {
+        dataSource.set(data: data)
+    }
+    
+}
+    
 // MARK: - Configure
 private extension AdditionalInformationCell {
     
@@ -53,7 +62,7 @@ private extension AdditionalInformationCell {
     func makeConstraints() {
         collectionView.snp.makeConstraints {
             $0.top.bottom.leading.trailing.equalToSuperview()
-            $0.height.greaterThanOrEqualTo(380).priority(999)
+            $0.height.greaterThanOrEqualTo(400).priority(999)
         }
     }
     

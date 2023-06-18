@@ -46,19 +46,32 @@ extension AdditionalInformationType {
         switch self {
         case .feelsLike:
             return 13
+        case.visibility:
+            return 18
         default:
             return 16
         }
     }
     
-    var mainView: UIView {
+    var imageHeight: CGFloat {
+        switch self {
+        case .feelsLike:
+            return 18
+        default:
+            return 16
+        }
+    }
+    
+    var mainView: UIView & AdditionalTypeViewProtocol {
         switch self {
         case .wind:
             return WindTypeView()
         case .humidity:
             return HumidityTypeView()
-        default:
-            return UIView()
+        case .feelsLike:
+            return FeelsLikeTypeView()
+        case .visibility:
+            return VisibilityTypeView()
         }
     }
     

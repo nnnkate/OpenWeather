@@ -62,7 +62,7 @@ private extension HourWeatherCell {
         hourLabel.text = timestamp == currentDateHour ?  "now".localized : data.timestamp
         let weatherType = data.weatherType
         conditionImageView.image = weatherType?.image
-        temperatureLabel.text = data.temperature
+        temperatureLabel.text = "\(data.temperature)°"
     }
     
 }
@@ -89,7 +89,7 @@ private extension HourWeatherCell {
     func makeConstraints() {
         hourLabel.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(conditionImageView.snp.top)
+            $0.bottom.equalTo(conditionImageView.snp.top).offset(-5)
         }
         
         conditionImageView.snp.makeConstraints {

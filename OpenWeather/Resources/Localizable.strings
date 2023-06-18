@@ -36,3 +36,9 @@
 "wind_title" = "WIND";
 "visibility_title" = "VISIBILITY";
 
+// - Additional Info
+"wind_units" = "m/s";
+"visibility_units" = "km";
+"visibility_subtitle" = "It's perfectly clear \nright now";
+
+

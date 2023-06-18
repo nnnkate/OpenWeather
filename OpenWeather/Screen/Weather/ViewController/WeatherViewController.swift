@@ -13,8 +13,17 @@ final class WeatherViewController: UIViewController {
     // - UI
     private lazy var backgroundImageView = UIImageView(image: CurrentWeatherType.sun.image)
     private lazy var currentWeatherView = CurrentWeatherView()
-    private lazy var tableView = UITableView(frame: .zero, style: .grouped)
+    private lazy var tableView = {
+        let view = UITableView(frame: .zero, style: .grouped)
+        view.isHidden = true
+        return view
+    }()
     private lazy var bottomView = WeatherBottomView()
+    private let loader = {
+        let view = UIActivityIndicatorView(style: .medium)
+        view.color = .white
+        return view
+    }()
     
     // - DataSource
     private lazy var dataSource: WeatherDataSourseProtocol = WeatherDataSourse(tableView: tableView, delegate: self)
@@ -35,13 +44,12 @@ private extension WeatherViewController {
     
     func updateSeveralDaysData(_ data: [DayWeatherData]) {
         dataSource.set(forecastData: data)
-        dataSource.reloadData() // TODO: add several methods (for sections)
     }
     
-    func updateData() {
-        currentWeatherView.set(data: DayWeatherData(date: "", minTemperature: 0, maxTemperature: 0, weatherType: .clouds)) // TODO:
-        backgroundImageView.image = CurrentWeatherType.night.image // TODO: 
-        dataSource.reloadData() // TODO: add several methods (for sections)
+    func updateCurrentData(_ data: CurrentWeatherData) {
+        currentWeatherView.set(data: data)
+        dataSource.set(currentData: data)
+        backgroundImageView.image = CurrentWeatherType.night.image // TODO:
     }
     
 }
@@ -49,12 +57,20 @@ private extension WeatherViewController {
 // MARK: - WeatherPresenterDelegate
 extension WeatherViewController: WeatherPresenterDelegate {
     
-    func updateCurrentWeather(_ data: CurrentWeatherResponse) {
-        updateData()
+    func updateCurrentWeather(_ data: CurrentWeatherData) {
+        updateCurrentData(data)
     }
     
     func updateSeveralDaysWeather(_ data: [DayWeatherData]) {
         updateSeveralDaysData(data)
+    }
+    
+    func updateData() {
+        loader.stopAnimating()
+        dataSource.reloadData()
+        UIView.animate(withDuration: 0.3) {
+            self.tableView.isHidden = false
+        }
     }
     
 }
@@ -76,6 +92,7 @@ private extension WeatherViewController {
         makeConstraints()
         configureUI()
         configurePresenter()
+        loader.startAnimating()
     }
     
     func addSubviews() {
@@ -83,9 +100,15 @@ private extension WeatherViewController {
         view.addSubview(currentWeatherView)
         view.addSubview(tableView)
         view.addSubview(bottomView)
+        view.addSubview(loader)
     }
     
     func makeConstraints() {
+        loader.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        
+        
         backgroundImageView.snp.makeConstraints {
             $0.top.leading.trailing.bottom.equalToSuperview()
         }
@@ -105,7 +128,7 @@ private extension WeatherViewController {
         
         bottomView.snp.makeConstraints {
             $0.leading.trailing.bottom.equalToSuperview()
-            $0.height.equalTo(72)
+            $0.height.equalTo(PhoneSize.type == .small ? 48 : 72)
         }
     }
     

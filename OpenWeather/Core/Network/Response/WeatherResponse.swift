@@ -65,6 +65,7 @@ struct CurrentWeatherResponse: Decodable {
     var main: MainResponse
     var name: String
     var wind: WindResponse
+    var visibility: Int
 }
 
 struct CoordinatesResponse: Decodable {

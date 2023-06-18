@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import RealmSwift
 
-enum WeatherType: String {
+enum WeatherType: String, PersistableEnum {
     case clouds
     case snow
     case rain
