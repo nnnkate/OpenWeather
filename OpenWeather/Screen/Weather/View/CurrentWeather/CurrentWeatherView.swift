@@ -120,7 +120,6 @@ private extension CurrentWeatherView {
         stackView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(spacing)
-//            $0.bottom.equalTo(-spacing).priority(999)
             $0.leading.greaterThanOrEqualTo(14).priority(999)
             $0.trailing.lessThanOrEqualTo(-14).priority(999)
         }

@@ -70,20 +70,19 @@ private extension WeatherSectionHeaderView {
     
     func makeConstraints() {
         imageView.snp.makeConstraints {
-            $0.top.greaterThanOrEqualTo(10).priority(999)
             $0.leading.equalTo(14)
             $0.width.equalTo(16)
-            $0.height.equalTo(16)
-            $0.bottom.lessThanOrEqualTo(-10).priority(999)
-            $0.centerY.equalToSuperview()
+            $0.height.equalTo(18)
+            $0.centerY.equalTo(titleLabel.snp.centerY)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(14)
+            $0.top.equalTo(10).priority(999)
             $0.leading.equalTo(imageView.snp.trailing).offset(8)
-            $0.trailing.equalTo(-16)
+            $0.trailing.lessThanOrEqualTo(-16).priority(999)
+            $0.height.equalTo(18).priority(999)
             $0.centerY.equalToSuperview()
-            $0.bottom.equalTo(-14)
+            $0.bottom.equalTo(-10).priority(999)
         }
     }
     

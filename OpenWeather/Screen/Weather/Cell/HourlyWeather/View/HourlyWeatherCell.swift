@@ -76,7 +76,7 @@ private extension HourlyWeatherCell {
         
         collectionView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(80)
+            $0.height.equalTo(85)
             $0.bottom.equalTo(-10)
         }
     }
