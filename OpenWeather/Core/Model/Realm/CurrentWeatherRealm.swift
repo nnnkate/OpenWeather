@@ -15,7 +15,9 @@ final class CurrentWeatherRealm: Object {
     @Persisted private(set) var temperature: Int
     @Persisted private(set) var minTemperature: Int
     @Persisted private(set) var maxTemperature: Int
+    @Persisted private(set) var humidity: Int
     @Persisted private(set) var visibility: Int
+    @Persisted private(set) var feelsLike: Int
     @Persisted private(set) var wind: Int
    
     static func convertFromDto(dto: CurrentWeatherData) -> CurrentWeatherRealm {
@@ -25,7 +27,9 @@ final class CurrentWeatherRealm: Object {
         realm.temperature = dto.temperature
         realm.minTemperature = dto.minTemperature
         realm.maxTemperature = dto.maxTemperature
+        realm.humidity = dto.humidity
         realm.visibility = dto.visibility
+        realm.feelsLike = dto.feelsLike
         realm.wind = dto.wind
         return realm
     }

@@ -52,6 +52,11 @@ final class DayWeatherCell: UITableViewCell {
         configure()
     }
     
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        mainView.roundCorners(topLeft: 0, topRight: 0, bottomLeft: isLast ? 14 : 0, bottomRight: isLast ? 14 : 0)
+    }
+        
 }
 
 // MARK: - Set
@@ -60,6 +65,7 @@ extension DayWeatherCell {
     func set(data: DayWeatherData, isLast: Bool) {
         self.data = data
         self.isLast = isLast
+        setNeedsDisplay()
         updateData()
     }
     

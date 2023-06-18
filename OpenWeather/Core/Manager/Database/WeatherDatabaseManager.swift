@@ -10,17 +10,11 @@ import RealmSwift
 
 final class CurrentWeatherDatabaseManager: BaseDatabaseManager<CurrentWeatherRealm> {
     
-    override func areTheSameItems(_ first: CurrentWeatherRealm, _ second: CurrentWeatherRealm) -> Bool {
-        true
-    }
 
 }
 
 final class DayWeatherDatabaseManager: BaseDatabaseManager<DayWeatherRealm> {
     
-    override func areTheSameItems(_ first: DayWeatherRealm, _ second: DayWeatherRealm) -> Bool {
-        true
-    }
 
 }
 

@@ -13,7 +13,9 @@ struct CurrentWeatherData {
     let temperature: Int
     let minTemperature: Int
     let maxTemperature: Int
+    let humidity: Int
     let visibility: Int
+    let feelsLike: Int
     let wind: Int
     
     init(cityName: String = "",
@@ -21,14 +23,18 @@ struct CurrentWeatherData {
          temperature: Int = 0,
          minTemperature: Int = 0,
          maxTemperature: Int = 0,
+         humidity: Int = 0,
          visibility: Int = 0,
+         feelsLike: Int = 0,
          wind: Int = 0) {
         self.cityName = cityName
         self.condition = condition
         self.temperature = temperature
         self.minTemperature = minTemperature
         self.maxTemperature = maxTemperature
+        self.humidity = humidity
         self.visibility = visibility
+        self.feelsLike = feelsLike
         self.wind = wind
     }
     
@@ -38,7 +44,9 @@ struct CurrentWeatherData {
                                       temperature: Int(dto.main.temp),
                                       minTemperature: Int(dto.main.tempMin),
                                       maxTemperature: Int(dto.main.tempMax),
+                                      humidity: Int(dto.main.humidity),
                                       visibility: dto.visibility / 1000,
+                                      feelsLike: Int(dto.main.feelsLike),
                                       wind: Int(dto.wind.speed))
         return data
     }
@@ -50,7 +58,9 @@ struct CurrentWeatherData {
                            temperature: realm.temperature,
                            minTemperature: realm.minTemperature,
                            maxTemperature: realm.maxTemperature,
+                           humidity: realm.humidity,
                            visibility: realm.visibility,
+                           feelsLike: realm.feelsLike,
                            wind: realm.wind)
     }
 }

@@ -12,7 +12,8 @@ final class FeelsLikeTypeView: UIView {
     // - UI
     private lazy var mainView = UIView()
     private lazy var valueLabel = Label(font: .systemFont(ofSize: 32, weight: .regular))
-    private lazy var titleLabel = Label(font: .systemFont(ofSize: 15, weight: .medium), numberOfLines: 3)
+    private lazy var titleLabel = Label(text: "feelslike_subtitle".localized,
+                                        font: .systemFont(ofSize: 15, weight: .medium), numberOfLines: 3)
 
     // - LifeCycle
     init() {
@@ -36,18 +37,7 @@ final class FeelsLikeTypeView: UIView {
 extension FeelsLikeTypeView: AdditionalTypeViewProtocol {
     
     func set(data: CurrentWeatherData?) {
-        
-    }
-    
-}
-
-// MARK: - Update
-private extension FeelsLikeTypeView {
-    
-    func updateData() {
-        // TODO: for test
-        valueLabel.text = "52%"
-        titleLabel.text = "Similar to the \nactual \ntemperature"
+        valueLabel.text = "\(data?.feelsLike ?? 0)%"
     }
     
 }
@@ -59,7 +49,6 @@ private extension FeelsLikeTypeView {
         configureUI()
         addSubviews()
         makeConstraints()
-        updateData()
     }
     
     func configureUI() {

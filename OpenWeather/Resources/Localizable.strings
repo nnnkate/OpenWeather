@@ -40,5 +40,7 @@
 "wind_units" = "m/s";
 "visibility_units" = "km";
 "visibility_subtitle" = "It's perfectly clear \nright now";
+"humidity_subtitle" =  "The dew point is 16° right now";
+"feelslike_subtitle" = "Similar to the \nactual \ntemperature";
 
 

@@ -52,7 +52,7 @@ final class CurrentWeatherView: UIView {
 // MARK: - Set
 extension CurrentWeatherView {
     
-    func set(data: CurrentWeatherData) {
+    func set(data: CurrentWeatherData?) {
         self.data = data
         updateData()
     }
@@ -64,26 +64,6 @@ extension CurrentWeatherView {
         }
         stackView.snp.updateConstraints {
             $0.top.equalTo(spacing - (inset > maxInset ? maxInset : inset))
-        }
-        changeVisibility(label: minMaxTemperatureLabel, maxY: minMaxTemperatureLabel.frame.maxY, frameMaxY: mainView.frame.maxY)
-        changeVisibility(label: conditionLabel, maxY: conditionLabel.frame.maxY, frameMaxY: mainView.frame.maxY)
-    }
-    
-}
-
-// MARK: - Helper
-private extension CurrentWeatherView {
-    
-    func changeVisibility(label: UILabel, maxY: CGFloat, frameMaxY: CGFloat) {
-        let inset: CGFloat = frameMaxY - maxY
-        if inset < maxInset {
-            if inset < spacing {
-                minMaxTemperatureLabel.alpha = 0
-            } else {
-                minMaxTemperatureLabel.alpha = abs(spacing - inset) / (spacing - (inset > minInset ? minInset : inset))
-            }
-        } else {
-            minMaxTemperatureLabel.alpha = 1
         }
     }
     

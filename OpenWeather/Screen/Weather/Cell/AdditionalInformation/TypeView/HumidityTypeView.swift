@@ -12,7 +12,8 @@ final class HumidityTypeView: UIView {
     // - UI
     private lazy var mainView = UIView()
     private lazy var valueLabel = Label(font: .systemFont(ofSize: 32, weight: .regular))
-    private lazy var titleLabel = Label(font: .systemFont(ofSize: 15, weight: .medium), numberOfLines: 2)
+    private lazy var titleLabel = Label(text: "humidity_subtitle".localized,
+                                        font: .systemFont(ofSize: 15, weight: .medium), numberOfLines: 2)
 
     // - LifeCycle
     init() {
@@ -36,18 +37,7 @@ final class HumidityTypeView: UIView {
 extension HumidityTypeView: AdditionalTypeViewProtocol {
     
     func set(data: CurrentWeatherData?) {
-        
-    }
-    
-}
-
-// MARK: - Update
-private extension HumidityTypeView {
-    
-    func updateData() {
-        // TODO: for test
-        valueLabel.text = "73%"
-        titleLabel.text = "The dew point is 16° right now."
+        valueLabel.text = "\(data?.humidity ?? 0)%"
     }
     
 }
@@ -59,7 +49,6 @@ private extension HumidityTypeView {
         configureUI()
         addSubviews()
         makeConstraints()
-        updateData()
     }
     
     func configureUI() {

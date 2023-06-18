@@ -9,7 +9,7 @@ import UIKit
 
 protocol WeatherDataSourseProtocol {
     func set(forecastData: [DayWeatherData])
-    func set(currentData: CurrentWeatherData) 
+    func set(currentData: CurrentWeatherData?) 
     func reloadData()
 }
 
@@ -46,7 +46,7 @@ extension WeatherDataSourse: WeatherDataSourseProtocol {
         self.forecastData = forecastData
     }
     
-    func set(currentData: CurrentWeatherData) {
+    func set(currentData: CurrentWeatherData?) {
         self.currentData = currentData
     }
     
@@ -87,14 +87,6 @@ extension WeatherDataSourse: UITableViewDataSource {
         case .none:
             return UITableViewCell()
         }
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
-    {
-        if WeatherSectionType(rawValue: indexPath.section)  == .forecast && (cell as? DayWeatherCell)?.isLast == true {
-            cell.roundCorners(bottomLeft: 14, bottomRight: 14)
-        }
-           
     }
     
 }
@@ -200,9 +192,6 @@ private extension WeatherDataSourse {
             let index = indexPath.row
             let data = forecastData[index]
             cell.set(data: data, isLast: index == forecastData.count - 1)
-            if index == forecastData.count - 1 {
-                print()
-            }
             return cell
         }
         

@@ -23,7 +23,7 @@ open class BaseDatabaseManager<Model: Object> {
     func rewrite(_ array: [Model]) {
         try? self.realm.write { [weak self] in
             guard let self else { return }
-            let oldItems = items.filter { r in !array.contains(where: { self.areTheSameItems($0, r) == true })}
+            let oldItems = items
             self.realm.delete(oldItems)
             self.realm.add(array, update: .all)
         }

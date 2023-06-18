@@ -46,10 +46,10 @@ private extension WeatherViewController {
         dataSource.set(forecastData: data)
     }
     
-    func updateCurrentData(_ data: CurrentWeatherData) {
+    func updateCurrentData(_ data: CurrentWeatherData?) {
         currentWeatherView.set(data: data)
         dataSource.set(currentData: data)
-        backgroundImageView.image = CurrentWeatherType.night.image // TODO:
+        backgroundImageView.image = CurrentWeatherType.night.image // TODO: 
     }
     
 }
@@ -57,7 +57,7 @@ private extension WeatherViewController {
 // MARK: - WeatherPresenterDelegate
 extension WeatherViewController: WeatherPresenterDelegate {
     
-    func updateCurrentWeather(_ data: CurrentWeatherData) {
+    func updateCurrentWeather(_ data: CurrentWeatherData?) {
         updateCurrentData(data)
     }
     

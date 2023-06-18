@@ -9,7 +9,7 @@ import Foundation
 import CoreLocation
 
 protocol WeatherPresenterDelegate: AnyObject {
-    func updateCurrentWeather(_ data: CurrentWeatherData)
+    func updateCurrentWeather(_ data: CurrentWeatherData?)
     func updateSeveralDaysWeather(_ data: [DayWeatherData])
     func updateData()
 }
@@ -61,7 +61,7 @@ private extension WeatherPresenter {
             delegate?.updateCurrentWeather(CurrentWeatherData.convertFromDb(realm: item))
             return
         }
-        delegate?.updateCurrentWeather(CurrentWeatherData())
+        delegate?.updateCurrentWeather(nil)
     }
    
     func updateSeveralDaysWeather() {
@@ -84,6 +84,7 @@ private extension WeatherPresenter {
                 group.leave()
             }
         }
+        group.enter()
         queue.async(group: group) { [weak self] in
             self?.loadSeveralDaysWeather {
                 self?.updateSeveralDaysWeather()
@@ -125,7 +126,7 @@ private extension WeatherPresenter {
             let dto = data.list.map { DayWeatherData.convertFromDto(dto: $0) }
             let weatherRealm = dto.map { DayWeatherRealm.convertFromDto(dto: $0) }
             DayWeatherDatabaseManager().rewrite(weatherRealm)
-            self.updateSeveralDaysWeather()
+            completion()
         }
     }
     
