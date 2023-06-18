@@ -10,6 +10,17 @@ import UIKit
 final class WeatherBottomView: UIView {
     
     // - UI
+    private lazy var mapImageView = {
+        let view = UIImageView(image: UIImage(systemName: "map"))
+        view.tintColor = .white
+        return view
+    }()
+    private lazy var locationImageView = UIImageView(image: UIImage(named: "location"))
+    private lazy var listImageView = {
+        let view = UIImageView(image: UIImage(systemName: "list.bullet"))
+        view.tintColor = .white
+        return view
+    }()
     private lazy var separator = UIView()
     
     // - Data
@@ -57,10 +68,32 @@ private extension WeatherBottomView {
     
     func addSubviews() {
         addBlur()
+        addSubview(mapImageView)
+        addSubview(locationImageView)
+        addSubview(listImageView)
         addSubview(separator)
     }
     
     func makeConstraints() {
+        mapImageView.snp.makeConstraints {
+            $0.top.equalTo(8)
+            $0.leading.equalTo(20)
+            $0.height.width.equalTo(23)
+        }
+        
+        listImageView.snp.makeConstraints {
+            $0.top.equalTo(8)
+            $0.trailing.equalTo(-20)
+            $0.height.width.equalTo(23)
+        }
+        
+        locationImageView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(16)
+            $0.height.equalTo(13)
+            $0.width.equalTo(33)
+        }
+        
         separator.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.height.equalTo(1)

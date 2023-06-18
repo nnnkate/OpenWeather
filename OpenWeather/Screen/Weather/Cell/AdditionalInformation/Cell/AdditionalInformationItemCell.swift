@@ -20,7 +20,8 @@ final class AdditionalInformationItemCell: UICollectionViewCell {
         return view
     }()
     private lazy var headerView = WeatherSectionHeaderView()
-
+    private lazy var typeView = UIView()
+    
     // - LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,6 +37,10 @@ final class AdditionalInformationItemCell: UICollectionViewCell {
 
 // MARK: - Set
 extension AdditionalInformationItemCell {
+    
+    func set(type: AdditionalInformationType?) {
+        reconfigureTypeView(view: type?.mainView ?? UIView())
+    }
     
     func set(title: String, image: UIImage?, imageHeight: CGFloat = 16, imageWidth: CGFloat = 16) {
         headerView.set(title: title, image: image, imageHeight: imageHeight, imageWidth: imageWidth)
@@ -69,6 +74,15 @@ private extension AdditionalInformationItemCell {
         
         headerView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
+        }
+    }
+    
+    func reconfigureTypeView(view: UIView) {
+        typeView = view
+        mainView.addSubview(typeView)
+        typeView.snp.makeConstraints {
+            $0.bottom.leading.trailing.equalToSuperview()
+            $0.top.equalTo(headerView.snp.bottom)
         }
     }
     

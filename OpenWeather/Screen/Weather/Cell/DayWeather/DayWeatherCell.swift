@@ -23,6 +23,7 @@ final class DayWeatherCell: UITableViewCell {
         let view = UIStackView()
         view.axis = .horizontal
         view.distribution = .equalCentering
+        view.alignment = .center
         return view
     }()
     private lazy var dayLabel = Label(font: UIFont(name: "Inter-Medium", size: 18))
@@ -33,6 +34,7 @@ final class DayWeatherCell: UITableViewCell {
     }()
     private lazy var conditionLabel = Label(color: .blue, font: UIFont(name: "Inter-Medium", size: 11))
     private lazy var minTemperatureLabel = Label(color: .gray, font: UIFont(name: "Inter-Medium", size: 16))
+    private lazy var sliderImageView = UIImageView(image: UIImage(named: "slider"))
     private lazy var maxTemperatureLabel = Label(font: UIFont(name: "Inter-Medium", size: 16))
     
     // - Data
@@ -112,6 +114,7 @@ private extension DayWeatherCell {
         stackView.addArrangedSubview(conditionImageView)
         stackView.addArrangedSubview(conditionLabel)
         stackView.addArrangedSubview(minTemperatureLabel)
+        stackView.addArrangedSubview(sliderImageView)
         stackView.addArrangedSubview(maxTemperatureLabel)
     }
     
@@ -123,6 +126,11 @@ private extension DayWeatherCell {
         stackView.snp.makeConstraints {
             $0.top.leading.equalTo(14)
             $0.trailing.bottom.equalTo(-14)
+        }
+        
+        sliderImageView.snp.makeConstraints {
+            $0.width.equalTo(100)
+            $0.height.equalTo(4)
         }
         
         separator.snp.makeConstraints {

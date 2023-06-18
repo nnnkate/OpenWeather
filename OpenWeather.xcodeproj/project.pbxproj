@@ -46,6 +46,9 @@
 		855023E72A3E438900D563AF /* HourWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855023E62A3E438900D563AF /* HourWeatherCell.swift */; };
 		855023EC2A3ED30B00D563AF /* HourWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855023EB2A3ED30B00D563AF /* HourWeatherData.swift */; };
 		855023EE2A3ED32500D563AF /* CurrentWeatherDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855023ED2A3ED32500D563AF /* CurrentWeatherDataSource.swift */; };
+		855023F12A3EE23F00D563AF /* AdditionalInformationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855023F02A3EE23F00D563AF /* AdditionalInformationType.swift */; };
+		855023F42A3EE37A00D563AF /* WindTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855023F32A3EE37900D563AF /* WindTypeView.swift */; };
+		855023F62A3EEDD500D563AF /* HumidityTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855023F52A3EEDD500D563AF /* HumidityTypeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +92,9 @@
 		855023E62A3E438900D563AF /* HourWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourWeatherCell.swift; sourceTree = "<group>"; };
 		855023EB2A3ED30B00D563AF /* HourWeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourWeatherData.swift; sourceTree = "<group>"; };
 		855023ED2A3ED32500D563AF /* CurrentWeatherDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherDataSource.swift; sourceTree = "<group>"; };
+		855023F02A3EE23F00D563AF /* AdditionalInformationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInformationType.swift; sourceTree = "<group>"; };
+		855023F32A3EE37900D563AF /* WindTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindTypeView.swift; sourceTree = "<group>"; };
+		855023F52A3EEDD500D563AF /* HumidityTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityTypeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -446,6 +452,8 @@
 		855023D42A3DA2AB00D563AF /* AdditionalInformation */ = {
 			isa = PBXGroup;
 			children = (
+				855023F22A3EE35200D563AF /* Type */,
+				855023EF2A3EE23100D563AF /* Enum */,
 				855023DB2A3DA6D000D563AF /* Cell */,
 				855023D82A3DA3B900D563AF /* DataSource */,
 				855023D72A3DA3AE00D563AF /* View */,
@@ -507,6 +515,23 @@
 				855023EB2A3ED30B00D563AF /* HourWeatherData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		855023EF2A3EE23100D563AF /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				855023F02A3EE23F00D563AF /* AdditionalInformationType.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		855023F22A3EE35200D563AF /* Type */ = {
+			isa = PBXGroup;
+			children = (
+				855023F32A3EE37900D563AF /* WindTypeView.swift */,
+				855023F52A3EEDD500D563AF /* HumidityTypeView.swift */,
+			);
+			path = Type;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -593,6 +618,7 @@
 				855023DA2A3DA3CB00D563AF /* AdditionalInformationDataSource.swift in Sources */,
 				8550237E2A3D7BE000D563AF /* CurrentWeatherType.swift in Sources */,
 				855023742A3D7AB200D563AF /* WeatherDataSourse.swift in Sources */,
+				855023F42A3EE37A00D563AF /* WindTypeView.swift in Sources */,
 				855023562A3D77D600D563AF /* WeatherViewController.swift in Sources */,
 				855023982A3D7D5000D563AF /* WeatherResponse.swift in Sources */,
 				8550237C2A3D7BCF00D563AF /* WeatherType.swift in Sources */,
@@ -609,6 +635,7 @@
 				855023D62A3DA2C100D563AF /* AdditionalInformationCell.swift in Sources */,
 				855023942A3D7D2400D563AF /* Constant.swift in Sources */,
 				855023522A3D77D600D563AF /* AppDelegate.swift in Sources */,
+				855023F12A3EE23F00D563AF /* AdditionalInformationType.swift in Sources */,
 				855023772A3D7B3E00D563AF /* WeatherBottomView.swift in Sources */,
 				855023EE2A3ED32500D563AF /* CurrentWeatherDataSource.swift in Sources */,
 				855023BA2A3D8EE700D563AF /* UIView+Blur.swift in Sources */,
@@ -621,6 +648,7 @@
 				855023E72A3E438900D563AF /* HourWeatherCell.swift in Sources */,
 				855023912A3D7CEE00D563AF /* LocationManager.swift in Sources */,
 				855023CD2A3D974000D563AF /* String+Localizable.swift in Sources */,
+				855023F62A3EEDD500D563AF /* HumidityTypeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -53,6 +53,7 @@ private extension WeatherSectionHeader {
     
     func configureUI() {
         backgroundColor = .clear
+        contentView.backgroundColor = .clear
     }
     
     func addSubviews() {
@@ -67,5 +68,3 @@ private extension WeatherSectionHeader {
     }
     
 }
-
-
