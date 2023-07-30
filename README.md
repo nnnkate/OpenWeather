@@ -1,1 +1,1 @@
-- Hourly data is mock data now because openweathermap doesn't provide a free API for hourly weather.
+
