@@ -60,7 +60,19 @@
 		8550240D2A3F203300D563AF /* WeatherDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8550240C2A3F203300D563AF /* WeatherDatabaseManager.swift */; };
 		855024112A3F2A9C00D563AF /* AdditionalTypeViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855024102A3F2A9C00D563AF /* AdditionalTypeViewProtocol.swift */; };
 		855024132A3F2B5300D563AF /* VisibilityTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855024122A3F2B5300D563AF /* VisibilityTypeView.swift */; };
+		85B7AA012A76F49500C75920 /* OpenWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B7AA002A76F49500C75920 /* OpenWeatherTests.swift */; };
+		85B7AA092A76F7FF00C75920 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 85B7AA082A76F7FF00C75920 /* Realm */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		85B7AA022A76F49500C75920 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 855023462A3D77D600D563AF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8550234D2A3D77D600D563AF;
+			remoteInfo = OpenWeather;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		8550234E2A3D77D600D563AF /* OpenWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +127,8 @@
 		8550240C2A3F203300D563AF /* WeatherDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDatabaseManager.swift; sourceTree = "<group>"; };
 		855024102A3F2A9C00D563AF /* AdditionalTypeViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalTypeViewProtocol.swift; sourceTree = "<group>"; };
 		855024122A3F2B5300D563AF /* VisibilityTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisibilityTypeView.swift; sourceTree = "<group>"; };
+		85B7A9FE2A76F49500C75920 /* OpenWeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenWeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		85B7AA002A76F49500C75920 /* OpenWeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +142,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		85B7A9FB2A76F49500C75920 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85B7AA092A76F7FF00C75920 /* Realm in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -135,7 +157,9 @@
 			isa = PBXGroup;
 			children = (
 				855023502A3D77D600D563AF /* OpenWeather */,
+				85B7A9FF2A76F49500C75920 /* OpenWeatherTests */,
 				8550234F2A3D77D600D563AF /* Products */,
+				85B7AA072A76F7FF00C75920 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -143,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				8550234E2A3D77D600D563AF /* OpenWeather.app */,
+				85B7A9FE2A76F49500C75920 /* OpenWeatherTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -605,6 +630,21 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		85B7A9FF2A76F49500C75920 /* OpenWeatherTests */ = {
+			isa = PBXGroup;
+			children = (
+				85B7AA002A76F49500C75920 /* OpenWeatherTests.swift */,
+			);
+			path = OpenWeatherTests;
+			sourceTree = "<group>";
+		};
+		85B7AA072A76F7FF00C75920 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -630,6 +670,27 @@
 			productReference = 8550234E2A3D77D600D563AF /* OpenWeather.app */;
 			productType = "com.apple.product-type.application";
 		};
+		85B7A9FD2A76F49500C75920 /* OpenWeatherTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 85B7AA062A76F49500C75920 /* Build configuration list for PBXNativeTarget "OpenWeatherTests" */;
+			buildPhases = (
+				85B7A9FA2A76F49500C75920 /* Sources */,
+				85B7A9FB2A76F49500C75920 /* Frameworks */,
+				85B7A9FC2A76F49500C75920 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				85B7AA032A76F49500C75920 /* PBXTargetDependency */,
+			);
+			name = OpenWeatherTests;
+			packageProductDependencies = (
+				85B7AA082A76F7FF00C75920 /* Realm */,
+			);
+			productName = OpenWeatherTests;
+			productReference = 85B7A9FE2A76F49500C75920 /* OpenWeatherTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -642,6 +703,10 @@
 				TargetAttributes = {
 					8550234D2A3D77D600D563AF = {
 						CreatedOnToolsVersion = 14.3;
+					};
+					85B7A9FD2A76F49500C75920 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = 8550234D2A3D77D600D563AF;
 					};
 				};
 			};
@@ -663,6 +728,7 @@
 			projectRoot = "";
 			targets = (
 				8550234D2A3D77D600D563AF /* OpenWeather */,
+				85B7A9FD2A76F49500C75920 /* OpenWeatherTests */,
 			);
 		};
 /* End PBXProject section */
@@ -677,6 +743,13 @@
 				8550235E2A3D77D700D563AF /* LaunchScreen.storyboard in Resources */,
 				8550235B2A3D77D700D563AF /* Assets.xcassets in Resources */,
 				855023592A3D77D600D563AF /* Weather.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85B7A9FC2A76F49500C75920 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -735,7 +808,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		85B7A9FA2A76F49500C75920 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85B7AA012A76F49500C75920 /* OpenWeatherTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		85B7AA032A76F49500C75920 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8550234D2A3D77D600D563AF /* OpenWeather */;
+			targetProxy = 85B7AA022A76F49500C75920 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		855023572A3D77D600D563AF /* Weather.storyboard */ = {
@@ -927,6 +1016,42 @@
 			};
 			name = Release;
 		};
+		85B7AA042A76F49500C75920 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 76TUWTZW78;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nnnkate.invoice-generator.OpenWeatherTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenWeather.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OpenWeather";
+			};
+			name = Debug;
+		};
+		85B7AA052A76F49500C75920 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 76TUWTZW78;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nnnkate.invoice-generator.OpenWeatherTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenWeather.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OpenWeather";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -944,6 +1069,15 @@
 			buildConfigurations = (
 				855023632A3D77D700D563AF /* Debug */,
 				855023642A3D77D700D563AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		85B7AA062A76F49500C75920 /* Build configuration list for PBXNativeTarget "OpenWeatherTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				85B7AA042A76F49500C75920 /* Debug */,
+				85B7AA052A76F49500C75920 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -984,6 +1118,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 855023FC2A3EFAC500D563AF /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		85B7AA082A76F7FF00C75920 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 855023FC2A3EFAC500D563AF /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
